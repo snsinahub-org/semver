@@ -14,7 +14,7 @@ async function run() {
     
 
 
-    fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + core.getInput('repo'));
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + repoFull[1]);
     const octokit = github.getOctokit(myToken)
     
     
