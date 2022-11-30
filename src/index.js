@@ -22,7 +22,8 @@ async function run() {
         `
           {
             repository(owner: "${owner}", name: "${repo}") {
-              
+             
+            }
           }
         `
       );
