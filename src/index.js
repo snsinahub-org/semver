@@ -13,7 +13,28 @@ async function run() {
     
     
     let semVersion = '1.0.0'
+    const graphqlWithAuth = graphql.defaults({
+        headers: {
+          authorization: `token secret123`,
+        },
+      });
+    const { repository } = await graphqlWithAuth(
+        `
+          {
+            repository(owner: "${owner}", name: "${repo}") {
+              issues(last: 3) {
+                edges {
+                  node {
+                    title
+                  }
+                }
+              }
+            }
+          }
+        `
+      );
     
+      console.log(JSON.stringify(repositry));
 
 
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + repoFull[1]);
