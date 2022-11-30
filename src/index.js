@@ -30,10 +30,7 @@ async function run() {
                           tagger {
                             date
                           }
-                        }
-                        ... on Commit {
-                          committedDate
-                        }
+                        }                        
                       }
                     }
                   }
