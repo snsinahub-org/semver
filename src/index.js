@@ -25,7 +25,7 @@ async function run() {
               issues(last: 3) {
                 edges {
                   node {
-                    title
+                    Tag
                   }
                 }
               }
