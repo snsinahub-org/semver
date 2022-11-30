@@ -22,14 +22,7 @@ async function run() {
         `
           {
             repository(owner: "${owner}", name: "${repo}") {
-              issues(last: 3) {
-                edges {
-                  node {
-                    Tag
-                  }
-                }
-              }
-            }
+              
           }
         `
       );
