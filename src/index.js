@@ -22,7 +22,7 @@ async function run() {
         `
           {
             repository(owner: "${owner}", name: "${repo}") {
-                refs(refPrefix: "refs/tags/", first: 100) {
+                refs(refPrefix: "refs/tags/v", first: 100) {
                     nodes {
                       name
                       target {                        
