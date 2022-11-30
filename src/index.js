@@ -25,9 +25,7 @@ async function run() {
                 refs(refPrefix: "refs/tags/", first: 100, after: $cursor) {
                     nodes {
                       name
-                      target {
-                        Tag
-                      } 
+                      
                     }
                   }
             }
