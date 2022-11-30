@@ -15,7 +15,7 @@ async function run() {
     let semVersion = '1.0.0'
     const graphqlWithAuth = graphql.defaults({
         headers: {
-          authorization: `token secret123`,
+          authorization: `${myToken}`,
         },
       });
     const { repository } = await graphqlWithAuth(
