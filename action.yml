@@ -16,4 +16,4 @@ outputs:
     description: version
 runs:
   using: "node16"
-  main: src/convert.js
+  main: src/index.js
