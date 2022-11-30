@@ -25,12 +25,10 @@ async function run() {
                 refs(refPrefix: "refs/tags/", first: 100) {
                     nodes {
                       name
-                      target {
-                        ... on Tag {
-                          tagger {
-                            date
-                          }
-                        }                        
+                      target {                        
+                        ... on Commit {
+                          committedDate
+                        }
                       }
                     }
                   }
