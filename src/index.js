@@ -36,7 +36,7 @@ async function run() {
     console.log(JSON.stringify(repository));
 
 
-    fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + repository);
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + JSON.stringify(repository['refs']['nodes']));
     const octokit = github.getOctokit(myToken)
 
 
