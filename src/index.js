@@ -21,13 +21,17 @@ async function run() {
     const { repository } = await graphqlWithAuth(
         `
           {
+            
             repository(owner: "${owner}", name: "${repo}") {
-                refs(refPrefix: "refs/tags/v", first: 100) {
+                refs(refPrefix: "refs/tags/", first: 1) {
                     nodes {
-                      name
-                      target {                        
-                        ... on Commit {
-                          committedDate
+                      repository {
+                        releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
+                          nodes {
+                            name
+                            url
+                            isPrerelease
+                          }
                         }
                       }
                     }
