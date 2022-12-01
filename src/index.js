@@ -29,7 +29,7 @@ async function run() {
                         releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
                           nodes {
                             name
-                            
+                            CREATED_AT
                           }
                         }
                       }
