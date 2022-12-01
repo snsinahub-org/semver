@@ -30,6 +30,8 @@ async function run() {
                           nodes {
                             name
                             createdAt
+                            tagName
+                            tag
                           }
                         }
                       }
