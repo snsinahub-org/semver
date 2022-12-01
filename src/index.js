@@ -31,7 +31,7 @@ async function run() {
                             name
                             createdAt
                             tagName
-                            tag
+                            
                           }
                         }
                       }
