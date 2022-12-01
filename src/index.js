@@ -23,7 +23,7 @@ async function run() {
           {
             
             repository(owner: "${owner}", name: "${repo}") {
-                refs(refPrefix: "refs/tags/", first: 1, query: {name: v}) {
+                refs(refPrefix: "refs/tags/", first: 1, query: "v3.0.0") {
                     nodes {
                       repository {
                         releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
