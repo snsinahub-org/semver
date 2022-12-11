@@ -11,6 +11,8 @@ module.exports = class GetReleaseTags {
     }
 
     test() {
-        console.log("the class is called")
+        let message = "the class is called"
+        console.log(message)
+        return message;
     }
 }
