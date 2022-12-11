@@ -37,7 +37,7 @@ module.exports = class JsonUtils {
                 break;
         }
         
-        return updatedVersion;
+        return `${prepend}${updatedVersion}`;
 
     }
 
