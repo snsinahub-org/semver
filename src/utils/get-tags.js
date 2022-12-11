@@ -17,7 +17,7 @@ module.exports = class GetReleaseTags {
         return message;
     }
 
-    async getAllTags() {
+    async getAllTags(owner, repo, myToken) {
         const graphqlWithAuth = graphql.defaults({
             headers: {
                 authorization: `token ${myToken}`,

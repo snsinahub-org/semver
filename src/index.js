@@ -44,7 +44,7 @@ async function run() {
     //       }
     //     `
     // );
-    const { repository } = tags.getAllTags();
+    const { repository } = tags.getAllTags(owner, repo, myToken);
     console.log(JSON.stringify(repository));
 
 
