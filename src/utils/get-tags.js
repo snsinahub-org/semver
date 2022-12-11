@@ -24,7 +24,7 @@ module.exports = class GetReleaseTags {
             },
         });
 
-        let tags =  await graphqlWithAuth(
+        return  await graphqlWithAuth(
             `
               {
                 
@@ -48,6 +48,6 @@ module.exports = class GetReleaseTags {
             `
         );
 
-        return tags;
+        
     }
 }
