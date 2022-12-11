@@ -9,10 +9,12 @@ module.exports = class JsonUtils {
     }
 
     upgradeVersion(version, type, prepend) {
-        
+        console.log("orig:", version)
         let versionObject = version.replace(prepend).split('.')
         let updatedVersion = ''
         let major, minor, patch = ''
+
+        console.log(version)
         
         switch(type.toLowerCase()) {
             case 'major': 
