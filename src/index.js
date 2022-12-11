@@ -20,11 +20,12 @@ async function run() {
     let semVersion = '1.0.0'
     
     const { repository } = await tags.getAllTags(owner, repo, myToken);
+    let tagsObj = tags.getTags(repository)
     // console.log("TAGS 8:", JSON.stringify(repository));
     
-    // console.log("TAGS ONE:", JSON.stringify(repository));
+    console.log("TAGS ONE:", JSON.stringify(tagsObj));
     // console.log(JSON.stringify(repository));
-    const jsonUtils = new JsonUtils(repository);
+    const jsonUtils = new JsonUtils(tagsObj);
 
     
 
