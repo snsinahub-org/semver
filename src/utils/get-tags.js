@@ -47,5 +47,7 @@ module.exports = class GetReleaseTags {
               }
             `
         );
+
+        return tags;
     }
 }
