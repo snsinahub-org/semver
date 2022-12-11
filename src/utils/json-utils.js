@@ -14,7 +14,7 @@ module.exports = class JsonUtils {
         let updatedVersion = ''
         let major, minor, patch = ''
 
-        console.log(version)
+        console.log(versionObject[0], versionObject[1], versionObject[2])
         
         switch(type.toLowerCase()) {
             case 'major': 
