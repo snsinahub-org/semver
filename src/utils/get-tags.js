@@ -55,7 +55,7 @@ module.exports = class GetReleaseTags {
 
         let tags = repos['repository']['refs']['nodes'][0]['repository']['releases']['nodes']
 
-        console.log("TAGS ZERO: ", JSON.stringify(tags))
+        // console.log("TAGS ZERO: ", JSON.stringify(tags))
 
         return tags;
         
