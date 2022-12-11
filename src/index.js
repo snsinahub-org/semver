@@ -16,36 +16,9 @@ async function run() {
 
 
     let semVersion = '1.0.0'
-    const graphqlWithAuth = graphql.defaults({
-        headers: {
-            authorization: `token ${myToken}`,
-        },
-    });
-    // const { repository } = await graphqlWithAuth(
-    //     `
-    //       {
-            
-    //         repository(owner: "${owner}", name: "${repo}") {
-    //             refs(refPrefix: "refs/tags/", first: 1, query: "v3.0.0") {
-    //                 nodes {
-    //                   repository {
-    //                     releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
-    //                       nodes {
-    //                         name
-    //                         createdAt
-    //                         tagName
-                            
-    //                       }
-    //                     }
-    //                   }
-    //                 }
-    //               }
-    //         }
-    //       }
-    //     `
-    // );
+    
     const { repository } = await tags.getAllTags(owner, repo, myToken);
-    console.log(JSON.stringify(repository));
+    // console.log(JSON.stringify(repository));
 
 
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + JSON.stringify(repository['refs']['nodes']));
