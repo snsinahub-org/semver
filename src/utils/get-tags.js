@@ -17,6 +17,10 @@ module.exports = class GetReleaseTags {
         return message;
     }
 
+    getTags(jsonObj) {
+        return jsonObj['repository']['refs']['nodes'][0]['repository']['releases']['nodes'];
+    }
+
     async getAllTags(owner, repo, myToken) {
         const graphqlWithAuth = graphql.defaults({
             headers: {
