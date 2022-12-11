@@ -21,30 +21,30 @@ async function run() {
             authorization: `token ${myToken}`,
         },
     });
-    const { repository } = await graphqlWithAuth(
-        `
-          {
+    // const { repository } = await graphqlWithAuth(
+    //     `
+    //       {
             
-            repository(owner: "${owner}", name: "${repo}") {
-                refs(refPrefix: "refs/tags/", first: 1, query: "v3.0.0") {
-                    nodes {
-                      repository {
-                        releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
-                          nodes {
-                            name
-                            createdAt
-                            tagName
+    //         repository(owner: "${owner}", name: "${repo}") {
+    //             refs(refPrefix: "refs/tags/", first: 1, query: "v3.0.0") {
+    //                 nodes {
+    //                   repository {
+    //                     releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
+    //                       nodes {
+    //                         name
+    //                         createdAt
+    //                         tagName
                             
-                          }
-                        }
-                      }
-                    }
-                  }
-            }
-          }
-        `
-    );
-
+    //                       }
+    //                     }
+    //                   }
+    //                 }
+    //               }
+    //         }
+    //       }
+    //     `
+    // );
+    const { repository } = tags.getAllTags();
     console.log(JSON.stringify(repository));
 
 
