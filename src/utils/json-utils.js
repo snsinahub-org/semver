@@ -19,14 +19,14 @@ module.exports = class JsonUtils {
         switch(type.toLowerCase()) {
             case 'major': 
                 major = parseInt(versionObject[0]) +1
-                minor = parseInt(versionObject[1])
-                patch = parseInt(versionObject[2])
+                minor = 0
+                patch = 0
                 updatedVersion = `${major}.${minor}.${patch}`
                 break;
             case 'minor': 
                 major = parseInt(versionObject[0])
                 minor = parseInt(versionObject[1]) +1
-                patch = parseInt(versionObject[2])
+                patch = 0
                 updatedVersion = `${major}.${minor}.${patch}`
                 break;
             case 'patch': 
