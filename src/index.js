@@ -9,9 +9,11 @@ const JsonUtils = require('./utils/json-utils.js');
 async function run() {
     const myToken = core.getInput('token');
     const type = core.getInput('type');
+    const prepend = core.getInput('prepend');
     
     const repoFull = core.getInput('repo').split('/');
     const tags = new getTags();
+
 
     let owner = repoFull[0];
     let repo = repoFull[1]
@@ -20,21 +22,15 @@ async function run() {
     let semVersion = '1.0.0'
     
     const { repository } = await tags.getAllTags(owner, repo, myToken);
-    let tagsObj = tags.getTags(repository)
-    // console.log("TAGS 8:", JSON.stringify(repository));
-    
-    console.log("TAGS ONE:", JSON.stringify(tagsObj));
-    // console.log(JSON.stringify(repository));
-    const jsonUtils = new JsonUtils(tagsObj);
+    let tagsObj = tags.getTags(repository);
+    const jsonUtils = new JsonUtils(tagsObj);  
+    const latestVersion =  jsonUtils.firstItem('tagName');
+    const newVersion = jsonUtils.upgradeVersion(latestVersion, type, prepend);
 
     
-
-
-    // fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + JSON.stringify(repository['refs']['nodes']));
-    fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + jsonUtils.firstItem('tagName'));
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);
     const octokit = github.getOctokit(myToken)
 
-    console.log("test new class:", tags.test())
 
 
 

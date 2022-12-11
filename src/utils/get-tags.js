@@ -10,12 +10,7 @@ module.exports = class GetReleaseTags {
     constructor() {
 
     }
-
-    test() {
-        let message = "the class is called"
-        console.log(message)
-        return message;
-    }
+ 
 
     getTags(jsonObj) {
         return jsonObj['refs']['nodes'][0]['repository']['releases']['nodes'];

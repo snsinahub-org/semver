@@ -10,6 +10,9 @@ inputs:
   type:
     required: true
     default: ''
+  prepend:
+    required: true
+    default: ''
   
 outputs:
   version:

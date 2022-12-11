@@ -8,10 +8,39 @@ module.exports = class JsonUtils {
         this.jsonObj = jsonObj
     }
 
+    upgradeVersion(version, type, prepend) {
+        
+        let versionObject = version.replace(prepend).split('.')
+        let updatedVersion = ''
+        let major, minor, patch = ''
+        
+        switch(type.toLowercase()) {
+            case 'major': 
+                major = parseInt(versionObject[0]) +1
+                minor = parseInt(versionObject[1])
+                patch = parseInt(versionObject[2])
+                updatedVersion = `${major}.${minor}.${patch}`
+                break;
+            case 'minor': 
+                major = parseInt(versionObject[0])
+                minor = parseInt(versionObject[1]) +1
+                patch = parseInt(versionObject[2])
+                updatedVersion = `${major}.${minor}.${patch}`
+                break;
+            case 'patch': 
+                major = parseInt(versionObject[0])
+                minor = parseInt(versionObject[1])
+                patch = parseInt(versionObject[2]) +1
+                updatedVersion = `${major}.${minor}.${patch}`
+                break;
+        }
+        
+        return updatedVersion;
+
+    }
+
     firstItem(keyName) {
-        console.log("TYPE OF:", keyName, typeof this.jsonObj)
-        console.log("TAGS :", JSON.stringify(this.jsonObj))
-        let first = this.jsonObj[1][keyName]
+        let first = this.jsonObj[0][keyName]
         return first
     }
 }
