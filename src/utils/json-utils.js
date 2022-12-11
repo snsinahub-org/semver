@@ -9,8 +9,8 @@ module.exports = class JsonUtils {
     }
 
     upgradeVersion(version, type, prepend) {
-        console.log("orig:", version.replace(prepend), prepend)
-        let versionObject = version.replace(prepend).split('.')
+        console.log("orig:", version.replace(prepend, ''), prepend)
+        let versionObject = version.replace(prepend, '').split('.')
         let updatedVersion = ''
         let major, minor, patch = ''
 
