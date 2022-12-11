@@ -49,6 +49,8 @@ module.exports = class GetReleaseTags {
             
         );
 
+        console.log("TAGS: ", JSON.stringify(tags))
+
         return tags['refs']['nodes'][0]['repository']['releases']['nodes'];
     }
 }
