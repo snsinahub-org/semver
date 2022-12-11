@@ -9,7 +9,7 @@ module.exports = class JsonUtils {
     }
 
     firstItem(keyName) {
-        let first = this.jsonObj[0][keyName]
+        let first = this.jsonObj[1][keyName]
         return first
     }
 }
