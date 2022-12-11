@@ -28,7 +28,7 @@ module.exports = class GetReleaseTags {
             },
         });
 
-        let tags =  await graphqlWithAuth(
+        let repos =  await graphqlWithAuth(
             `
               {
                 
@@ -53,7 +53,9 @@ module.exports = class GetReleaseTags {
             
         );
 
-        console.log("TAGS ZERO: ", JSON.stringify(tags['refs']['nodes'][0]['repository']['releases']['nodes']))
+        let tags = repos['repository']['refs']['nodes'][0]['repository']['releases']['nodes']
+
+        console.log("TAGS ZERO: ", JSON.stringify(tags))
 
         return tags;
         
