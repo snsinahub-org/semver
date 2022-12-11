@@ -23,7 +23,7 @@ async function run() {
     // console.log(JSON.stringify(repository));
     const jsonUtils = new JsonUtils(repository['refs']['nodes']);
 
-    console.log(JSON.stringify(repository['refs']['nodes']));
+    console.log(JSON.stringify(repository));
 
 
     // fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + JSON.stringify(repository['refs']['nodes']));
