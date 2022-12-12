@@ -51,6 +51,7 @@ module.exports = class JsonUtils {
             return obj.name.startsWith(prepend)
         })
 
+        console.log('JSON: ', JSON.stringify(this.jsonObj))
         if(prepend != '') {
             this.jsonObj = matched;
         }
