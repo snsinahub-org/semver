@@ -45,4 +45,14 @@ module.exports = class JsonUtils {
         let first = this.jsonObj[0][keyName]
         return first
     }
+
+    filterByPrepend(prepend) {
+        let matched = _.filter(this.jsonObj, function(obj) {          
+            return obj.name.startsWith(prepend)
+        })
+
+        this.jsonObj = matched;
+
+        return matched;
+    }
 }
