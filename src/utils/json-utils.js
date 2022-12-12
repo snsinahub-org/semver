@@ -55,6 +55,8 @@ module.exports = class JsonUtils {
             this.jsonObj = matched;
         }
 
+        console.log('PREPEND: ', JSON.stringify(matched))
+
         return matched;
     }
 }
