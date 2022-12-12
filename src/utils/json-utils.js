@@ -51,7 +51,9 @@ module.exports = class JsonUtils {
             return obj.name.startsWith(prepend)
         })
 
-        this.jsonObj = matched;
+        if(prepend != '') {
+            this.jsonObj = matched;
+        }
 
         return matched;
     }
