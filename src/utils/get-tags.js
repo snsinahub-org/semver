@@ -31,7 +31,7 @@ module.exports = class GetReleaseTags {
                     refs(refPrefix: "refs/tags/", first: 1, query: "v3.0.0") {
                         nodes {
                           repository {
-                            c, orderBy: {field: TAG_NAME, direction: DESC}) {
+                            c, orderBy: {field: NAME, direction: DESC}) {
                               nodes {
                                 name
                                 createdAt
