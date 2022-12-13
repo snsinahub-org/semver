@@ -72,6 +72,9 @@ module.exports = class JsonUtils {
         
         // let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
         let sorted = _.orderBy(plain, ['major', 'minor', 'patch'], ['desc', 'desc', 'desc'])
+        console.log('matched', JSON.stringify(matched))
+        console.log('plain', JSON.stringify(plain))
+        console.log('sorted', JSON.stringify(sorted))
         if(prepend != '') {
             this.jsonObj = sorted;
         }
