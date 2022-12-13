@@ -78,7 +78,7 @@ module.exports = class JsonUtils {
     filterNoPrepend() {
         let matched = _.filter(this.jsonObj, function(obj) { 
             let o = obj.tagName.split('.')
-            console.log('OOOO: ', isNan(o[0]))
+            console.log('OOOO: ', isNaN(o[0]))
             if(!isNaN(o[0])){
                 return obj
             }
