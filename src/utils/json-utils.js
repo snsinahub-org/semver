@@ -55,21 +55,19 @@ module.exports = class JsonUtils {
         })
 
         let plain = _.map(matched, function(o){
-            console.log("PREPEND VALUE: ", prepend, o.tagName, o.tagName.replace(prepend, ''))
+            
             let obj = {
-                "name": o.name.replace(prepend, ''),
+                "name": o.name,
                 "createdAt": o.createdAt,
-                "tagName": o.tagName.replace(prepend, ''),
+                "tagName": o.tagName,
                 "tag": parseInt(o.tagName.replace(prepend, '').replace(/\./g, ''))
             }
             
             return obj
         })
-        let allTags = _.map(matched, 'tagName')
         
-        
-        // let sorted = _.sortBy(plain, ['tag'], ['desc'])
-        let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
+        let sorted = _.sortBy(plain, ['tag'], ['desc'])
+        // let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
         // let sorted = allTags.sort(compareVersions)
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
