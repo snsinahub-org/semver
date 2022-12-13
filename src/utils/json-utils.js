@@ -60,7 +60,7 @@ module.exports = class JsonUtils {
                 "name": o.name.replace(prepend, ''),
                 "createdAt": o.createdAt,
                 "tagName": o.tagName.replace(prepend, ''),
-                "tag": o.tagName.replace(prepend, '').replace('.', '')
+                "tag": o.tagName.replace(prepend, '').replace(/./g, '')
             }
             
             return obj
