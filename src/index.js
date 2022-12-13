@@ -22,6 +22,7 @@ async function run() {
     let semVersion = '1.0.0'
     
     const { repository } = await tags.getAllTags(owner, repo, myToken);
+    console.log('REPOSITORY: ', JSON.stringify(repository))
     let tagsObj = tags.getTags(repository);
     const jsonUtils = new JsonUtils(tagsObj); 
     if(prefix == '') {
