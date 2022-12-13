@@ -76,8 +76,9 @@ module.exports = class JsonUtils {
     }
 
     filterNoPrefix() {
+        console.log("INTERNAL OBJ: ", JSON.stringify(this.jsonObj))
         let matched = _.filter(this.jsonObj, function(obj) { 
-            console.log("INTERNAL OBJ: ", JSON.stringify(obj))
+            
             let o = obj.tagName.split('.')
             if(!isNaN(o[0])){
                 obj.major = parseInt(o[0])
