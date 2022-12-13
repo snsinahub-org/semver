@@ -61,6 +61,7 @@ module.exports = class JsonUtils {
                 "createdAt": o.createdAt,
                 "tagName": o.tagName.replace(prepend, '')
             }
+            console.log("OBJ: ", console.log(JSON.stringify(obj)))
             return obj
         })
         let allTags = _.map(matched, 'tagName')
