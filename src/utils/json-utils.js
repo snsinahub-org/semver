@@ -74,7 +74,7 @@ module.exports = class JsonUtils {
 
         console.log('JSON: ', JSON.stringify(plain))
         if(prepend != '') {
-            this.jsonObj = matched;
+            this.jsonObj = sorted;
         }
 
         console.log('SORTED: ', JSON.stringify(sorted))
