@@ -24,6 +24,8 @@ module.exports = class GetReleaseTags {
             },
         });
 
+        console.log(`Owner: ${owner} - Repo: ${repo}`)
+
         return await graphqlWithAuth(
             `
               {
