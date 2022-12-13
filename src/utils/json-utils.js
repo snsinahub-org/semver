@@ -80,6 +80,6 @@ module.exports = class JsonUtils {
 
         console.log('SORTED: ', JSON.stringify(sorted))
 
-        return matched;
+        return sorted;
     }
 }
