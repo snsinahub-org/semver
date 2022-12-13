@@ -12,7 +12,7 @@ module.exports = class Releases {
         return await octokit.rest.repos.createRelease({
             owner,
             repo,
-            tagName,
+            tag_name: tagName,
         })
     }
 }
