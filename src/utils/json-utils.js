@@ -2,6 +2,8 @@
 
 const _ = require('lodash');
 const compareVersions = require('compare-versions');
+const semverSort = require('semver/functions/sort')
+
 
 module.exports = class JsonUtils {
 
@@ -52,9 +54,8 @@ module.exports = class JsonUtils {
             return obj.tagName.startsWith(prepend)
         })
         let allTags = _.map(matched, 'tagName')
-        console.log('PREPEND: ', JSON.stringify(allTags))
         
-        let sorted = compareVersions.sort(allTags);
+        let sorted = _.sortBy(this.matched, ['tagName'], ['desc'])
         // let sorted = allTags.sort(compareVersions)
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
