@@ -5,11 +5,13 @@ const fs = require('fs');
 const { graphql } = require("@octokit/graphql");
 const getTags = require('./utils/get-tags.js');
 const JsonUtils = require('./utils/json-utils.js');
+const Release = require('./utils/release.js');
 
 async function run() {
     const myToken = core.getInput('token');
     const type = core.getInput('type');
     const prefix = core.getInput('prefix');
+    const release = new Release();
     
     const repoFull = core.getInput('repo').split('/');
     const tags = new getTags();
@@ -39,6 +41,8 @@ async function run() {
         newVersion = `${prefix}1.0.0`
     }
         
+    let newRelease = release.createRelease(owner, repo, newVersion);
+    console.log("RELEASE: ", JSON.stringify(newRelease))
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);
     const octokit = github.getOctokit(myToken)
 
