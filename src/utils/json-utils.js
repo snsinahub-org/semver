@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+import { compareVersions } from 'compare-versions';
 
 module.exports = class JsonUtils {
 
@@ -50,10 +51,8 @@ module.exports = class JsonUtils {
         let matched = _.filter(this.jsonObj, function(obj) { 
             return obj.tagName.startsWith(prepend)
         })
-        let allTags = _.map(matched, 'tagName').sort(function(a, b) {
-            return a - b;
-          });
-
+        let allTags = _.map(matched, 'tagName').sort(compareVersions);
+        // let sorted = allTags.sort(compareVersions)
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
 
