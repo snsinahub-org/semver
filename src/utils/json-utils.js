@@ -12,13 +12,9 @@ module.exports = class JsonUtils {
     }
 
     upgradeVersion(version, type, prepend) {
-        console.log("orig:", version.replace(prepend, ''), prepend)
         let versionObject = version.replace(prepend, '').split('.')
         let updatedVersion = ''
         let major, minor, patch = ''
-        
-
-        console.log(versionObject[0], versionObject[1], versionObject[2])
         
         switch(type.toLowerCase()) {
             case 'major': 
@@ -70,11 +66,8 @@ module.exports = class JsonUtils {
             return obj
         })
         
-        // let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
         let sorted = _.orderBy(plain, ['major', 'minor', 'patch'], ['desc', 'desc', 'desc'])
-        console.log('matched', JSON.stringify(matched))
-        console.log('plain', JSON.stringify(plain))
-        console.log('sorted', JSON.stringify(sorted))
+        
         if(prepend != '') {
             this.jsonObj = sorted;
         }
@@ -85,7 +78,6 @@ module.exports = class JsonUtils {
     filterNoPrepend() {
         let matched = _.filter(this.jsonObj, function(obj) { 
             let o = obj.tagName.split('.')
-            console.log('OOOO: ',o,  isNaN(o[0]))
             if(!isNaN(o[0])){
                 obj.major = parseInt(o[0])
                 obj.minor = parseInt(o[1])
@@ -108,10 +100,7 @@ module.exports = class JsonUtils {
             return obj
         })
         let sorted = _.orderBy(matched, ['major', 'minor', 'patch'], ['desc', 'desc', 'desc'])
-        // let sorted = matched.sort((a, b) => (a.tag < b.tag ? 1 : -1))
-        console.log('matched', JSON.stringify(matched))
-        console.log('plain', JSON.stringify(plain))
-        console.log('sorted', JSON.stringify(sorted))
+       
         this.jsonObj = sorted;
 
         return sorted;
