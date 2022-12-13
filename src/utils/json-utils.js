@@ -56,18 +56,22 @@ module.exports = class JsonUtils {
         })
 
         let plain = _.map(matched, function(o){
-            
+            let version = obj.tagName.split('.')
             let obj = {
                 "name": o.name,
                 "createdAt": o.createdAt,
                 "tagName": o.tagName,
-                "tag": parseInt(o.tagName.replace(prepend, '').replace(/\./g, ''))
+                "tag": parseInt(o.tagName.replace(prepend, '').replace(/\./g, '')),
+                "major": parseInt(version[0]),
+                "minor": parseInt(version[1]),
+                "patch": parseInt(version[2])
             }
-            
+                        
             return obj
         })
         
-        let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
+        // let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
+        let sorted = _.orderBy(plain, ['major', 'minor', 'patch'], ['desc', 'desc', 'desc'])
         if(prepend != '') {
             this.jsonObj = sorted;
         }
