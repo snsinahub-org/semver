@@ -31,9 +31,15 @@ async function run() {
     } else {
         jsonUtils.filterByPrefix(prefix);
     } 
+
+    const newVersion = ''
+    if(jsonUtils.jsonObj.length > 0 ){
+        const latestVersion =  jsonUtils.firstItem('tagName');
+        newVersion = jsonUtils.upgradeVersion(latestVersion, type, prefix);
+    } else {
+        newVersion = `${prefix}1.0.0`
+    }
     
-    const latestVersion =  jsonUtils.firstItem('tagName');
-    const newVersion = jsonUtils.upgradeVersion(latestVersion, type, prefix);
 
     
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);
