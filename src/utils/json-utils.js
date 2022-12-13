@@ -78,7 +78,7 @@ module.exports = class JsonUtils {
     filterNoPrepend() {
         let matched = _.filter(this.jsonObj, function(obj) { 
             let o = obj.tagName.split('.')
-            console.log('OOOO: ', isNaN(o[0]))
+            console.log('OOOO: ',o,  isNaN(o[0]))
             if(!isNaN(o[0])){
                 return obj
             }
@@ -101,9 +101,7 @@ module.exports = class JsonUtils {
         console.log('matched', JSON.stringify(matched))
         console.log('plain', JSON.stringify(plain))
         console.log('sorted', JSON.stringify(sorted))
-        if(prepend != '') {
-            this.jsonObj = sorted;
-        }
+        this.jsonObj = sorted;
 
         return sorted;
     }
