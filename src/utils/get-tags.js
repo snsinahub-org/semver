@@ -14,7 +14,8 @@ module.exports = class GetReleaseTags {
 
     getTags(jsonObj) {
         console.log("JSON OBJ: ", JSON.stringify(jsonObj))
-        return jsonObj['refs']['nodes'][0]['repository']['releases']['nodes'];
+        // return jsonObj['refs']['nodes'][0]['repository']['releases']['nodes'];
+        return jsonObj['repository']['releases']['nodes'];
     }
 
     async getAllTags(owner, repo, myToken) {
