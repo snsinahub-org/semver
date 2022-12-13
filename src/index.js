@@ -25,7 +25,7 @@ async function run() {
     let tagsObj = tags.getTags(repository);
     const jsonUtils = new JsonUtils(tagsObj); 
     if(prepend == '') {
-        console.log('No Prepend')
+        jsonUtils.filterNoPrepend()
     } else {
         jsonUtils.filterByPrepend(prepend);
     } 
