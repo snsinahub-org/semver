@@ -53,6 +53,7 @@ module.exports = class JsonUtils {
         })
         let allTags = _.map(matched, 'tagName')
         console.log('PREPEND: ', JSON.stringify(allTags))
+        compareVersions(allTags);
         let sorted = allTags.sort(compareVersions);
         // let sorted = allTags.sort(compareVersions)
 
