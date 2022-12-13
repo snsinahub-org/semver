@@ -16,11 +16,7 @@ module.exports = class JsonUtils {
         let versionObject = version.replace(prepend, '').split('.')
         let updatedVersion = ''
         let major, minor, patch = ''
-        if(prepend == '') {
-            console.log('No Prepend')
-        } else {
-            this.filterByPrepend(prepend)
-        }
+        
 
         console.log(versionObject[0], versionObject[1], versionObject[2])
         

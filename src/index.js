@@ -23,7 +23,13 @@ async function run() {
     
     const { repository } = await tags.getAllTags(owner, repo, myToken);
     let tagsObj = tags.getTags(repository);
-    const jsonUtils = new JsonUtils(tagsObj);      
+    const jsonUtils = new JsonUtils(tagsObj); 
+    if(prepend == '') {
+        console.log('No Prepend')
+    } else {
+        jsonUtils.filterByPrepend(prepend);
+    } 
+    
     const latestVersion =  jsonUtils.firstItem('tagName');
     const newVersion = jsonUtils.upgradeVersion(latestVersion, type, prepend);
 
