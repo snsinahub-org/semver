@@ -16,6 +16,11 @@ module.exports = class JsonUtils {
         let versionObject = version.replace(prepend, '').split('.')
         let updatedVersion = ''
         let major, minor, patch = ''
+        if(prepend == '') {
+            console.log('No Prepend')
+        } else {
+            this.filterByPrepend(prepend)
+        }
 
         console.log(versionObject[0], versionObject[1], versionObject[2])
         
@@ -66,18 +71,10 @@ module.exports = class JsonUtils {
             return obj
         })
         
-        // let sorted = _.sortBy(plain, ['tag'], ['desc'])
         let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
-        // let sorted = allTags.sort(compareVersions)
-
-        // _.findIndex(users, function(o) { return o.user == 'barney'; });
-
-        console.log('JSON: ', JSON.stringify(plain))
         if(prepend != '') {
             this.jsonObj = sorted;
         }
-
-        console.log('SORTED: ', JSON.stringify(sorted))
 
         return sorted;
     }
