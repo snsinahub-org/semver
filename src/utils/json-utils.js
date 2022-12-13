@@ -48,8 +48,8 @@ module.exports = class JsonUtils {
 
     filterByPrepend(prepend) {
         let matched = _.filter(this.jsonObj, function(obj) { 
-            console.log("INSIDE: ", obj.name.startsWith(prepend))         
-            return obj.name.startsWith(prepend)
+            console.log("INSIDE: ", obj.tagName, ' -- ', obj.tagName.startsWith(prepend))         
+            return obj.tagName.startsWith(prepend)
         })
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
