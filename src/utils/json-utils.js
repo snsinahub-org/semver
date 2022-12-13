@@ -11,8 +11,8 @@ module.exports = class JsonUtils {
         this.jsonObj = jsonObj
     }
 
-    upgradeVersion(version, type, prepend) {
-        let versionObject = version.replace(prepend, '').split('.')
+    upgradeVersion(version, type, prefix) {
+        let versionObject = version.replace(prefix, '').split('.')
         let updatedVersion = ''
         let major, minor, patch = ''
         
@@ -37,7 +37,7 @@ module.exports = class JsonUtils {
                 break;
         }
         
-        return `${prepend}${updatedVersion}`;
+        return `${prefix}${updatedVersion}`;
 
     }
 
@@ -46,18 +46,18 @@ module.exports = class JsonUtils {
         return first
     }
 
-    filterByPrepend(prepend) {
+    filterByPrefix(prefix) {
         let matched = _.filter(this.jsonObj, function(obj) { 
-            return obj.tagName.startsWith(prepend)
+            return obj.tagName.startsWith(prefix)
         })
 
         let plain = _.map(matched, function(o){
-            let version = o.tagName.replace(prepend, '').split('.')
+            let version = o.tagName.replace(prefix, '').split('.')
             let obj = {
                 "name": o.name,
                 "createdAt": o.createdAt,
                 "tagName": o.tagName,
-                "tag": parseInt(o.tagName.replace(prepend, '').replace(/\./g, '')),
+                "tag": parseInt(o.tagName.replace(prefix, '').replace(/\./g, '')),
                 "major": parseInt(version[0]),
                 "minor": parseInt(version[1]),
                 "patch": parseInt(version[2])
@@ -68,14 +68,14 @@ module.exports = class JsonUtils {
         
         let sorted = _.orderBy(plain, ['major', 'minor', 'patch'], ['desc', 'desc', 'desc'])
         
-        if(prepend != '') {
+        if(prefix != '') {
             this.jsonObj = sorted;
         }
 
         return sorted;
     }
 
-    filterNoPrepend() {
+    filterNoPrefix() {
         let matched = _.filter(this.jsonObj, function(obj) { 
             let o = obj.tagName.split('.')
             if(!isNaN(o[0])){

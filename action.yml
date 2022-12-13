@@ -10,7 +10,7 @@ inputs:
   type:
     required: true
     default: ''
-  prepend:
+  prefix:
     required: true
     default: ''
   

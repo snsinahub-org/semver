@@ -9,7 +9,7 @@ const JsonUtils = require('./utils/json-utils.js');
 async function run() {
     const myToken = core.getInput('token');
     const type = core.getInput('type');
-    const prepend = core.getInput('prepend');
+    const prefix = core.getInput('prefix');
     
     const repoFull = core.getInput('repo').split('/');
     const tags = new getTags();
@@ -24,14 +24,14 @@ async function run() {
     const { repository } = await tags.getAllTags(owner, repo, myToken);
     let tagsObj = tags.getTags(repository);
     const jsonUtils = new JsonUtils(tagsObj); 
-    if(prepend == '') {
-        jsonUtils.filterNoPrepend()
+    if(prefix == '') {
+        jsonUtils.filterNoPrefix()
     } else {
-        jsonUtils.filterByPrepend(prepend);
+        jsonUtils.filterByPrefix(prefix);
     } 
     
     const latestVersion =  jsonUtils.firstItem('tagName');
-    const newVersion = jsonUtils.upgradeVersion(latestVersion, type, prepend);
+    const newVersion = jsonUtils.upgradeVersion(latestVersion, type, prefix);
 
     
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);
