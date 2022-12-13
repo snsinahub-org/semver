@@ -100,7 +100,7 @@ module.exports = class JsonUtils {
             
             return obj
         })
-        let sorted = _.orderBy(matched, [major, minor, patch], ['desc', 'desc', 'desc'])
+        let sorted = _.orderBy(matched, ['major', 'minor', 'patch'], ['desc', 'desc', 'desc'])
         // let sorted = matched.sort((a, b) => (a.tag < b.tag ? 1 : -1))
         console.log('matched', JSON.stringify(matched))
         console.log('plain', JSON.stringify(plain))
