@@ -77,7 +77,7 @@ module.exports = class JsonUtils {
 
     filterNoPrepend() {
         let matched = _.filter(this.jsonObj, function(obj) { 
-            let o = obj.split('.')
+            let o = obj.tagName.split('.')
             console.log('OOOO: ', typeof o[0])
             return obj.tagName.startsWith(prepend)
         })
