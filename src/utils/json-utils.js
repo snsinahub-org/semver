@@ -42,7 +42,6 @@ module.exports = class JsonUtils {
     }
 
     firstItem(keyName) {
-        console.log("KEY NAME: ", JSON.stringify(this.jsonObj))
         let first = this.jsonObj[0][keyName]
         return first
     }
@@ -77,7 +76,6 @@ module.exports = class JsonUtils {
     }
 
     filterNoPrefix() {
-        console.log("INTERNAL OBJ: ", JSON.stringify(this.jsonObj))
         let matched = _.filter(this.jsonObj, function(obj) { 
             
             let o = obj.tagName.split('.')

@@ -24,7 +24,6 @@ async function run() {
     const { repository } = await tags.getAllTags(owner, repo, myToken);
     
     let tagsObj = tags.getTags(repository);
-    console.log('REPOSITORY: ', JSON.stringify(tagsObj))
     const jsonUtils = new JsonUtils(tagsObj); 
     if(prefix == '') {
         jsonUtils.filterNoPrefix()
@@ -39,9 +38,7 @@ async function run() {
     } else {
         newVersion = `${prefix}1.0.0`
     }
-    
-
-    
+        
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);
     const octokit = github.getOctokit(myToken)
 

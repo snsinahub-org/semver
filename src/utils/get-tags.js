@@ -13,8 +13,6 @@ module.exports = class GetReleaseTags {
  
 
     getTags(jsonObj) {
-        console.log("JSON OBJ: ", JSON.stringify(jsonObj))
-        // return jsonObj['refs']['nodes'][0]['repository']['releases']['nodes'];
         return jsonObj['releases']['nodes'];
     }
 
@@ -25,47 +23,22 @@ module.exports = class GetReleaseTags {
             },
         });
 
-        console.log(`Owner: ${owner} - Repo: ${repo}`)
-
-        // return await graphqlWithAuth(
-        //     `
-        //       {
-                
-        //         repository(owner: "${owner}", name: "${repo}") {
-        //             refs(refPrefix: "refs/tags/", first: 1, query: "v3.0.0") {
-        //                 nodes {
-        //                   repository {
-        //                     releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
-        //                       nodes {
-        //                         name
-        //                         createdAt
-        //                         tagName
-                                
-        //                       }
-        //                     }
-        //                   }
-        //                 }
-        //               }
-        //         }
-        //       }
-        //     `
-            
-        // );       
+ 
         return await graphqlWithAuth(
             `
               {
                 
                 repository(owner: "${owner}", name: "${repo}") {
                     
-                            releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
-                              nodes {
-                                name
-                                createdAt
-                                tagName
-                                
-                              
+                    releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
+                            nodes {
+                            name
+                            createdAt
+                            tagName
+                            
+                            
                         }
-                      }
+                    }
                 }
               }
             `
