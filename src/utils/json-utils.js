@@ -80,6 +80,10 @@ module.exports = class JsonUtils {
             let o = obj.tagName.split('.')
             console.log('OOOO: ',o,  isNaN(o[0]))
             if(!isNaN(o[0])){
+                obj.major = parseInt(o[0])
+                obj.minor = parseInt(o[1])
+                obj.patch = parseInt(o[2])
+                obj.tag = parseInt(obj.tagName.replace(/\./g, ''))
                 return obj
             }
             
@@ -96,8 +100,8 @@ module.exports = class JsonUtils {
             
             return obj
         })
-        
-        let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
+        let sorted = _.orderBy(matched, [major, minor, patch], ['desc', 'desc', 'desc'])
+        // let sorted = matched.sort((a, b) => (a.tag < b.tag ? 1 : -1))
         console.log('matched', JSON.stringify(matched))
         console.log('plain', JSON.stringify(plain))
         console.log('sorted', JSON.stringify(sorted))
