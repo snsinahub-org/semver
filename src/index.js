@@ -32,7 +32,7 @@ async function run() {
         jsonUtils.filterByPrefix(prefix);
     } 
 
-    const newVersion = ''
+    let newVersion = ''
     if(jsonUtils.jsonObj.length > 0 ){
         const latestVersion =  jsonUtils.firstItem('tagName');
         newVersion = jsonUtils.upgradeVersion(latestVersion, type, prefix);
