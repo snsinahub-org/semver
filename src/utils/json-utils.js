@@ -53,9 +53,19 @@ module.exports = class JsonUtils {
         let matched = _.filter(this.jsonObj, function(obj) { 
             return obj.tagName.startsWith(prepend)
         })
+
+        let plain = _.forEach(matched, function(o){
+            let obj = {
+                "name": o.name.replace(prepend, ''),
+                "createdAt": o.createdAt,
+                "tagName": o.tagName.replace(prepend, '')
+            }
+            return obj
+        })
         let allTags = _.map(matched, 'tagName')
         
-        let sorted = _.orderBy(matched, ['tagName'], ['desc'])
+        
+        let sorted = _.orderBy(obj, ['tagName'], ['desc'])
         // let sorted = allTags.sort(compareVersions)
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
@@ -65,7 +75,7 @@ module.exports = class JsonUtils {
             this.jsonObj = matched;
         }
 
-        console.log('PREPEND: ', JSON.stringify(sorted))
+        console.log('SORTED: ', JSON.stringify(sorted))
 
         return matched;
     }
