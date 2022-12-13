@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-import { compareVersions } from 'compare-versions';
+const compareVersions = require('compare-versions');
 
 module.exports = class JsonUtils {
 
