@@ -69,7 +69,7 @@ module.exports = class JsonUtils {
         
         
         // let sorted = _.sortBy(plain, ['tag'], ['desc'])
-        let sorted = plain.sort((a, b) => (a.tag < parseb.tag ? 1 : -1))
+        let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
         // let sorted = allTags.sort(compareVersions)
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
