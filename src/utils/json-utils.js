@@ -53,8 +53,8 @@ module.exports = class JsonUtils {
         })
         let allTags = _.map(matched, 'tagName')
         console.log('PREPEND: ', JSON.stringify(allTags))
-        compareVersions(allTags);
-        let sorted = allTags.sort(compareVersions);
+        
+        let sorted = compareVersions.sort(allTags);
         // let sorted = allTags.sort(compareVersions)
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
