@@ -48,9 +48,12 @@ module.exports = class JsonUtils {
 
     filterByPrepend(prepend) {
         let matched = _.filter(this.jsonObj, function(obj) { 
-            console.log("INSIDE: ", obj.tagName, ' -- ', obj.tagName.startsWith(prepend))         
             return obj.tagName.startsWith(prepend)
         })
+        let allTags = _.map(matched, 'tagName').sort(function(a, b) {
+            return a - b;
+          });
+
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
 
@@ -59,7 +62,7 @@ module.exports = class JsonUtils {
             this.jsonObj = matched;
         }
 
-        console.log('PREPEND: ', JSON.stringify(matched))
+        console.log('PREPEND: ', JSON.stringify(allTags))
 
         return matched;
     }
