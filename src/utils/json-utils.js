@@ -78,8 +78,11 @@ module.exports = class JsonUtils {
     filterNoPrepend() {
         let matched = _.filter(this.jsonObj, function(obj) { 
             let o = obj.tagName.split('.')
-            console.log('OOOO: ', typeof o[0])
-            return obj.tagName.startsWith(prepend)
+            console.log('OOOO: ', isNan(o[0]))
+            if(!isNaN(o[0])){
+                return obj
+            }
+            
         })
 
         let plain = _.map(matched, function(o){
@@ -88,13 +91,16 @@ module.exports = class JsonUtils {
                 "name": o.name,
                 "createdAt": o.createdAt,
                 "tagName": o.tagName,
-                "tag": parseInt(o.tagName.replace(prepend, '').replace(/\./g, ''))
+                "tag": parseInt(o.tagName.replace(/\./g, ''))
             }
             
             return obj
         })
         
         let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
+        console.log('matched', JSON.stringify(matched))
+        console.log('plain', JSON.stringify(plain))
+        console.log('sorted', JSON.stringify(sorted))
         if(prepend != '') {
             this.jsonObj = sorted;
         }
