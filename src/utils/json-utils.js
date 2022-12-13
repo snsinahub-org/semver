@@ -65,7 +65,7 @@ module.exports = class JsonUtils {
         let allTags = _.map(matched, 'tagName')
         
         
-        let sorted = _.orderBy(obj, ['tagName'], ['desc'])
+        let sorted = _.orderBy(plain, ['tagName'], ['desc'])
         // let sorted = allTags.sort(compareVersions)
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
