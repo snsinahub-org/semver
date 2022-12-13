@@ -54,15 +54,15 @@ module.exports = class JsonUtils {
             return obj.tagName.startsWith(prepend)
         })
 
-        let plain = _.forEach(matched, function(o){
+        let plain = _.map(matched, function(o){
             console.log("PREPEND VALUE: ", prepend, o.tagName, o.tagName.replace(prepend, ''))
             let obj = {
                 "name": o.name.replace(prepend, ''),
                 "createdAt": o.createdAt,
                 "tagName": o.tagName.replace(prepend, '')
             }
-            o = obj
-            return o
+            
+            return obj
         })
         let allTags = _.map(matched, 'tagName')
         
