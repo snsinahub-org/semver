@@ -56,7 +56,7 @@ module.exports = class JsonUtils {
         })
 
         let plain = _.map(matched, function(o){
-            let version = o.tagName.split('.')
+            let version = o.tagName.replace(prepend, '').split('.')
             let obj = {
                 "name": o.name,
                 "createdAt": o.createdAt,
