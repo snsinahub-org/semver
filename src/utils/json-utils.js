@@ -68,16 +68,16 @@ module.exports = class JsonUtils {
         
         // let sorted = _.sortBy(plain, ['tag'], ['desc'])
         let sorted = plain.sort((a, b) => (a.tag < b.tag ? 1 : -1))
-        // // let sorted = allTags.sort(compareVersions)
+        // let sorted = allTags.sort(compareVersions)
 
-        // // _.findIndex(users, function(o) { return o.user == 'barney'; });
+        // _.findIndex(users, function(o) { return o.user == 'barney'; });
 
-        // console.log('JSON: ', JSON.stringify(plain))
-        // if(prepend != '') {
-        //     this.jsonObj = matched;
-        // }
+        console.log('JSON: ', JSON.stringify(plain))
+        if(prepend != '') {
+            this.jsonObj = matched;
+        }
 
-        // console.log('SORTED: ', JSON.stringify(sorted))
+        console.log('SORTED: ', JSON.stringify(sorted))
 
         return sorted;
     }
