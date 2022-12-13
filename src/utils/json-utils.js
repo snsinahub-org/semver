@@ -51,7 +51,9 @@ module.exports = class JsonUtils {
         let matched = _.filter(this.jsonObj, function(obj) { 
             return obj.tagName.startsWith(prepend)
         })
-        let allTags = _.map(matched, 'tagName').sort(compareVersions);
+        let allTags = _.map(matched, 'tagName')
+        console.log('PREPEND: ', JSON.stringify(allTags))
+        let sorted = all.sort(compareVersions);
         // let sorted = allTags.sort(compareVersions)
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
@@ -61,7 +63,7 @@ module.exports = class JsonUtils {
             this.jsonObj = matched;
         }
 
-        console.log('PREPEND: ', JSON.stringify(allTags))
+        console.log('PREPEND: ', JSON.stringify(sorted))
 
         return matched;
     }
