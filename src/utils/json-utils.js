@@ -55,7 +55,7 @@ module.exports = class JsonUtils {
         })
 
         let plain = _.forEach(matched, function(o){
-            console.log("PREPEND VALUE: ", prepend)
+            console.log("PREPEND VALUE: ", prepend, o.tagName, o.tagName.replace(prepend, ''))
             let obj = {
                 "name": o.name.replace(prepend, ''),
                 "createdAt": o.createdAt,
