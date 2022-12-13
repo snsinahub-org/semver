@@ -42,6 +42,7 @@ module.exports = class JsonUtils {
     }
 
     firstItem(keyName) {
+        console.log("KEY NAME: ", JSON.stringify(this.jsonObj))
         let first = this.jsonObj[0][keyName]
         return first
     }
