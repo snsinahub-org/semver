@@ -47,7 +47,7 @@ module.exports = class JsonUtils {
     }
 
     filterByPrepend(prepend) {
-        let matched = _.findIndex(this.jsonObj, function(obj) {          
+        let matched = _.forEach(this.jsonObj, function(obj) {          
             return obj.name.startsWith(prepend)
         })
 
