@@ -70,7 +70,7 @@ module.exports = class JsonUtils {
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
 
-        console.log('JSON: ', JSON.stringify(this.jsonObj))
+        console.log('JSON: ', JSON.stringify(plain))
         if(prepend != '') {
             this.jsonObj = matched;
         }
