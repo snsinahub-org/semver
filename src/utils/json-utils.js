@@ -59,7 +59,8 @@ module.exports = class JsonUtils {
             let obj = {
                 "name": o.name.replace(prepend, ''),
                 "createdAt": o.createdAt,
-                "tagName": o.tagName.replace(prepend, '')
+                "tagName": o.tagName.replace(prepend, ''),
+                "tag": o.tagName.replace(prepend, '').replace('.', '')
             }
             
             return obj
@@ -67,7 +68,7 @@ module.exports = class JsonUtils {
         let allTags = _.map(matched, 'tagName')
         
         
-        let sorted = _.orderBy(plain, ['tagName'], ['desc'])
+        let sorted = _.orderBy(plain, ['tag'], ['desc'])
         // let sorted = allTags.sort(compareVersions)
 
         // _.findIndex(users, function(o) { return o.user == 'barney'; });
