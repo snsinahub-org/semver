@@ -1,9 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-const compareVersions = require('compare-versions');
-const semverSort = require('semver/functions/sort')
-
 
 module.exports = class JsonUtils {
 
@@ -15,6 +12,7 @@ module.exports = class JsonUtils {
         let versionObject = version.replace(prefix, '').split('.')
         let updatedVersion = ''
         let major, minor, patch = ''
+        console.log('HEHE: ', JSON.stringify(versionObject), type, type.toLowerCase())
         
         switch(type.toLowerCase()) {
             case 'major': 
@@ -41,11 +39,13 @@ module.exports = class JsonUtils {
 
     }
 
+    // return first item after sorting tags
     firstItem(keyName) {
         let first = this.jsonObj[0][keyName]
         return first
     }
 
+    // filter and sort tags based on tag's prefix
     filterByPrefix(prefix) {
         let matched = _.filter(this.jsonObj, function(obj) { 
             return obj.tagName.startsWith(prefix)
@@ -75,6 +75,7 @@ module.exports = class JsonUtils {
         return sorted;
     }
 
+    // filter and sort tags when there is no tag's prefix
     filterNoPrefix() {
         let matched = _.filter(this.jsonObj, function(obj) { 
             
