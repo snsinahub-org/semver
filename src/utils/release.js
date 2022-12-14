@@ -25,7 +25,7 @@ module.exports = class Releases {
         return this.files
     }
 
-    async uploadAsset(owner, repo, tagName) {
+    async uploadAsset(owner, repo) {
         return await octokit.rest.repos.uploadReleaseAsset({
             owner: owner,
             repo: repo,
