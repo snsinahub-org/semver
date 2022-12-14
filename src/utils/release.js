@@ -22,7 +22,7 @@ module.exports = class Releases {
 
     listFiles(files) {
         this.files = files.split('\n')
-        console.log("Files: ", JSON.stringify(this.files))
+        return this.files
     }
 
     async uploadAsset(owner, repo, tagName) {
@@ -30,8 +30,8 @@ module.exports = class Releases {
             owner: owner,
             repo: repo,
             release_id: this.id,
-            name: tagName,
-            data,
+            name: this.files,
+            data: this.files,
           });
     }
 
