@@ -12,7 +12,6 @@ module.exports = class Releases {
             auth: this.token
         }
         this.octokit = new Octokit(this.ops);
-
     }
 
     releaseData(data) {

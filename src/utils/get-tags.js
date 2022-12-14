@@ -11,7 +11,6 @@ module.exports = class GetReleaseTags {
 
     }
  
-
     getTags(jsonObj) {
         return jsonObj['releases']['nodes'];
     }
@@ -22,7 +21,6 @@ module.exports = class GetReleaseTags {
                 authorization: `token ${myToken}`,
             },
         });
-
  
         return await graphqlWithAuth(
             `
@@ -35,15 +33,11 @@ module.exports = class GetReleaseTags {
                             name
                             createdAt
                             tagName
-                            
-                            
                         }
                     }
                 }
               }
             `
-            
         );       
-        
     }
 }
