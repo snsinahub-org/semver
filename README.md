@@ -83,7 +83,7 @@ Let's say current version is `v1.0.0` and you can set `type` equal to one of the
         uses: actions/checkout@v3
     - name: 'Get semver based on pr label'
         id: semver
-        uses: "snsinahub-org/semver@dev"
+        uses: "snsinahub-org/semver@v2.0.0"
         with:
           type: 'MAJOR'
           prefix: 'v'
