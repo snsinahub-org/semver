@@ -11,7 +11,7 @@ async function run() {
     const myToken = core.getInput('token');
     const type = core.getInput('type');
     const prefix = core.getInput('prefix');
-    const release = new Release();
+    const release = new Release(myToken);
     
     const repoFull = core.getInput('repo').split('/');
     const tags = new getTags();

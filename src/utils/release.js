@@ -1,15 +1,20 @@
 'use strict';
 
 const { Octokit } = require("@octokit/rest");
-const octokit = new Octokit();
+const github = require('@actions/github');
+
 
 module.exports = class Releases {
-    constructor() {
-
+    constructor(token) {
+        this.token = token;
+        this.ops = {
+            auth: this.token
+        }
+        this.octokit = new Octokit(this.ops);
     }
 
     async createRelease(owner, repo, tagName) {
-        return await octokit.rest.repos.createRelease({
+        return await this.octokit.rest.repos.createRelease({
             owner: owner,
             repo: repo,
             tag_name: tagName,
