@@ -23,7 +23,8 @@ module.exports = class Releases {
     async uploadFiles(owner, repo, files) {
         this.files = files.split('\n')
         for(let i = 0; i < files.length; i++) {
-            await this.uploadAsset(owner, repo, files[i]);
+            console.log("FILE: ", files[i])
+            // await this.uploadAsset(owner, repo, files[i]);
         }
     }
 
