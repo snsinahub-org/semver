@@ -27,7 +27,7 @@ module.exports = class Releases {
             tag_name: tagName,
             target_commitish: branch,
             target_commitish: body,
-            prerelease: prerelease,
+            prerelease: (prerelease == 'false' ? false: true) ,
             body: body,
         })
     }
