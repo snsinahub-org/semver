@@ -21,7 +21,8 @@ module.exports = class Releases {
     }
 
     listFiles(files) {
-        console.log("Files: ", JSON.stringify(files))
+        this.files = files.split('\n')
+        console.log("Files: ", JSON.stringify(this.files))
     }
 
     async uploadAsset(owner, repo, tagName) {
