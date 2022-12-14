@@ -20,11 +20,11 @@ module.exports = class Releases {
         console.log('ID: ', this.id)
     }
 
-    async uploadFiles(owner, repo, files) {
-        this.files = files.split('\n')
+    async uploadFiles(owner, repo, assets) {
+        let files = assets.split('\n')
         for(let i = 0; i < files.length; i++) {
             console.log("FILE: ", files[i])
-            // await this.uploadAsset(owner, repo, files[i]);
+            await this.uploadAsset(owner, repo, files[i]);
         }
     }
 
