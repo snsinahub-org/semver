@@ -18,7 +18,7 @@ inputs:
     default: ''
   prerelease:
     required: true
-    default: false
+    default: 'false'
   body:
     required: true
     default: ''
