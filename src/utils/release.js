@@ -26,7 +26,7 @@ module.exports = class Releases {
     }
 
     async uploadAsset(owner, repo) {
-        return await octokit.rest.repos.uploadReleaseAsset({
+        return await this.octokit.rest.repos.uploadReleaseAsset({
             owner: owner,
             repo: repo,
             release_id: this.id,
