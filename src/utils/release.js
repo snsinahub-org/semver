@@ -32,7 +32,7 @@ module.exports = class Releases {
             tag_name: tagName,
             target_commitish: branch,
             body: body,
-            prerelease: (prerelease == 'false' ? false: true) ,
+            prerelease: (prerelease == 'false' ? true: false) ,
             body: body,
         })
     }
