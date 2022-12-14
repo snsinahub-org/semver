@@ -16,6 +16,12 @@ inputs:
   files:
     required: true
     default: ''
+  prerelease:
+    required: true
+    default: false
+  body:
+    required: true
+    default: ''
   branch:
     required: false
     default: ${{ github.event.repository.default_branch }}

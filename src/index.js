@@ -11,6 +11,8 @@ async function run() {
     const myToken = core.getInput('token');
     const type = core.getInput('type');
     const prefix = core.getInput('prefix');
+    const prerelease = core.getInput('prerelease');
+    const body = core.getInput('body');
     const files = core.getInput('files');
     const branch = core.getInput('branch');
     const release = new Release(myToken);
@@ -43,7 +45,7 @@ async function run() {
         newVersion = `${prefix}1.0.0`
     }
         
-    let newRelease = await release.createRelease(owner, repo, newVersion);
+    let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, body);
     release.releaseData(newRelease);
     console.log("RELEASE: ", JSON.stringify(newRelease), branch )
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);

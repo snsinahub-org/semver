@@ -20,11 +20,15 @@ module.exports = class Releases {
         console.log('ID: ', this.id)
     }
 
-    async createRelease(owner, repo, tagName) {
+    async createRelease(owner, repo, tagName, branch, prerelease, body) {
         return await this.octokit.rest.repos.createRelease({
             owner: owner,
             repo: repo,
             tag_name: tagName,
+            target_commitish: branch,
+            target_commitish: body,
+            prerelease: prerelease,
+            body: body,
         })
     }
 }
