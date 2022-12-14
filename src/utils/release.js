@@ -2,6 +2,7 @@
 
 const { Octokit } = require("@octokit/rest");
 const github = require('@actions/github');
+const fs = require('fs');
 
 
 module.exports = class Releases {
@@ -34,7 +35,7 @@ module.exports = class Releases {
             repo: repo,
             release_id: this.id,
             name: file,
-            data: file,
+            data: await fs.promises.readFile(file),
           });
     }
 
