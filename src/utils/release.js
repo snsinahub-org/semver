@@ -20,8 +20,18 @@ module.exports = class Releases {
         console.log('ID: ', this.id)
     }
 
-    async uploadAsset() {
+    listFiles(files) {
+        console.log("Files: ", JSON.stringify(files))
+    }
 
+    async uploadAsset(owner, repo, tagName) {
+        return await octokit.rest.repos.uploadReleaseAsset({
+            owner: owner,
+            repo: repo,
+            release_id: this.id,
+            name: tagName,
+            data,
+          });
     }
 
     async createRelease(owner, repo, tagName, branch, prerelease, body) {

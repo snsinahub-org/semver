@@ -48,6 +48,7 @@ async function run() {
     let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, body);
     release.releaseData(newRelease);
     console.log("RELEASE: ", JSON.stringify(newRelease), branch )
+    release.listFiles(files);
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);
     const octokit = github.getOctokit(myToken)
 
