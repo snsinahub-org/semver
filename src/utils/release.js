@@ -20,18 +20,20 @@ module.exports = class Releases {
         console.log('ID: ', this.id)
     }
 
-    listFiles(files) {
+    async uploadFiles(owner, repo, files) {
         this.files = files.split('\n')
-        return this.files
+        for(let i = 0; i < files.length; i++) {
+            await this.uploadAsset(owner, repo, files[i]);
+        }
     }
 
-    async uploadAsset(owner, repo) {
+    async uploadAsset(owner, repo, file) {
         return await this.octokit.rest.repos.uploadReleaseAsset({
             owner: owner,
             repo: repo,
             release_id: this.id,
-            name: this.files,
-            data: this.files,
+            name: file,
+            data: file,
           });
     }
 
