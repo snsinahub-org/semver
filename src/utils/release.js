@@ -11,6 +11,13 @@ module.exports = class Releases {
             auth: this.token
         }
         this.octokit = new Octokit(this.ops);
+
+    }
+
+    releaseData(data) {
+        this.data = data
+        this.id = data['data']['id']
+        console.log('ID: ', this.id)
     }
 
     async createRelease(owner, repo, tagName) {
