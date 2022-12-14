@@ -44,6 +44,7 @@ module.exports = class Releases {
             owner: owner,
             repo: repo,
             tag_name: tagName,
+            name: tagName,
             target_commitish: branch,
             body: body,
             prerelease: (prerelease == 'false' ? true: false) ,
