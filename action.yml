@@ -13,6 +13,10 @@ inputs:
   prefix:
     required: true
     default: ''
+  files:
+    required: true
+    default: ''
+  
   
 outputs:
   version:

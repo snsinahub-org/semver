@@ -11,6 +11,7 @@ async function run() {
     const myToken = core.getInput('token');
     const type = core.getInput('type');
     const prefix = core.getInput('prefix');
+    const files = core.getInput('files');
     const release = new Release(myToken);
     
     const repoFull = core.getInput('repo').split('/');
@@ -41,7 +42,7 @@ async function run() {
         newVersion = `${prefix}1.0.0`
     }
         
-    let newRelease = release.createRelease(owner, repo, newVersion);
+    let newRelease = await release.createRelease(owner, repo, newVersion);
     console.log("RELEASE: ", JSON.stringify(newRelease))
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);
     const octokit = github.getOctokit(myToken)
