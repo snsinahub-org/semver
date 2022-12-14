@@ -16,6 +16,9 @@ inputs:
   files:
     required: true
     default: ''
+  branch:
+    required: false
+    default: ${{ github.event.repository.default_branch }}
   
   
 outputs:
