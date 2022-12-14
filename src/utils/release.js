@@ -10,8 +10,8 @@ module.exports = class Releases {
 
     async createRelease(owner, repo, tagName) {
         return await octokit.rest.repos.createRelease({
-            owner,
-            repo,
+            owner: owner,
+            repo: repo,
             tag_name: tagName,
         })
     }
