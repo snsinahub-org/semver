@@ -46,12 +46,15 @@ async function run() {
         newVersion = `${prefix}1.0.0`;
     }
 
-    
+
     if(createRelease) {        
         let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, body);
         release.releaseData(newRelease);    
-        let upload = await release.uploadFiles(owner, repo, files);
+        if(files != '') {
+            let upload = await release.uploadFiles(owner, repo, files);
+        }
     }
+
 
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);
     const octokit = github.getOctokit(myToken);
