@@ -42,7 +42,7 @@ async function run() {
     } 
 
     let newVersion = '';
-    if(jsonUtils.jsonObj.length > 0 ){
+    if(jsonUtils.jsonObj.length > 0 && !exitOnMissingType){
         const latestVersion =  jsonUtils.firstItem('tagName');
         newVersion = jsonUtils.upgradeVersion(latestVersion, type, prefix);
     } else {
