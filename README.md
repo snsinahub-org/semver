@@ -24,7 +24,7 @@ This action finds the latest Github release semantic version number and generate
     # Required: true
     # Default: ''
     # Accepted values: major, minor, patch
-    type: ''
+    type: 'PATCH'
     
     # Description:  You can add a prefix to semver e.g. v1.0.0 
     # Required: false

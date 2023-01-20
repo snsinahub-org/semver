@@ -9,7 +9,7 @@ inputs:
     default: ${{ github.token }}  
   type:
     required: true
-    default: ''
+    default: 'PATCH'
   prefix:
     required: true
     default: ''
