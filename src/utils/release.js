@@ -39,7 +39,7 @@ module.exports = class Releases {
     }
 
     async createRelease(owner, repo, tagName, branch, prerelease, body) {
-        console.log(body, tagName)
+                
         return await this.octokit.rest.repos.createRelease({
             owner: owner,
             repo: repo,
@@ -47,7 +47,7 @@ module.exports = class Releases {
             name: tagName,
             target_commitish: branch,
             body: body,
-            prerelease: (prerelease == 'false' ? true: false) ,
+            prerelease: (prerelease == 'no' ? false: true) ,
             body: body,
         })
     }
