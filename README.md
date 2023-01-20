@@ -7,7 +7,7 @@ This action finds the latest Github release semantic version number and generate
 ```YAML
 - name: 'Get json subbed'
   id: subbed
-  uses: "snsinahub-org/semver@v2.0.0"
+  uses: "snsinahub-org/semver@v2.1.0"
   with:
   
     # List of variables
@@ -71,7 +71,7 @@ This action finds the latest Github release semantic version number and generate
 ## How to generate new version
 Let's say current version is `v1.0.0` and you can set `type` equal to one of these values 
 
-- **MAJOR**: It is a major change to your software which may not be compatible with older releases. The new version will be `v2.0.0` 
+- **MAJOR**: It is a major change to your software which may not be compatible with older releases. The new version will be `v2.1.0` 
 - **MINOR**: The change is smaller and adds new features to an existing project but still compatible with the current version. The new version is `v1.1.0`
 - **PATCH**: There is a bug fix without introducing new features. The new version is `v1.0.1`
 
@@ -83,7 +83,7 @@ Let's say current version is `v1.0.0` and you can set `type` equal to one of the
         uses: actions/checkout@v3
     - name: 'Get semver based on pr label'
         id: semver
-        uses: "snsinahub-org/semver@v2.0.0"
+        uses: "snsinahub-org/semver@v2.1.0"
         with:
           type: 'MAJOR'
           prefix: 'v'
