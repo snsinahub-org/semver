@@ -9,7 +9,7 @@ const Release = require('./utils/release.js');
 async function run() {
     // Inputs
     const myToken = core.getInput('token');
-    const type = core.getInput('type');
+    const type = core.getInput('type') == '' ? 'PATCH' : core.getInput('type');
     const prefix = core.getInput('prefix');
     const prerelease = core.getInput('prerelease');
     const body = core.getInput('body');
@@ -17,6 +17,8 @@ async function run() {
     const branch = core.getInput('branch');
     const createRelease = core.getInput('create-release') == 'yes' ? true : false;
     const exitOnMissingType = core.getInput('exit-on-missing-type') == 'yes' ? true : false;
+
+
 
 
     // class initializations
