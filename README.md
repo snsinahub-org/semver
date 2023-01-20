@@ -22,9 +22,15 @@ This action finds the latest Github release semantic version number and generate
     
     # Description: semver is incrementing based on type value
     # Required: true
-    # Default: ''
+    # Default: 'PATCH'
     # Accepted values: major, minor, patch
-    type: ''
+    type: 'PATCH'
+
+    # Description: semver action exits if type is not provided.
+    # Required: true
+    # Default: 'no'
+    # Accepted values: yes, no
+    exit-on-missing-type: 'no'
     
     # Description:  You can add a prefix to semver e.g. v1.0.0 
     # Required: false
