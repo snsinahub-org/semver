@@ -16,6 +16,7 @@ async function run() {
     const files = core.getInput('files');
     const branch = core.getInput('branch');
     const createRelease = core.getInput('create-release') == 'yes' ? true : false;
+    const exitOnMissingType = core.getInput('exit-on-missing-type') == 'yes' ? true : false;
 
 
     // class initializations
@@ -47,7 +48,7 @@ async function run() {
     }
 
 
-    if(createRelease) {        
+    if(createRelease && !exitOnMissingType) {        
         let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, body);
         release.releaseData(newRelease);    
         if(files != '') {
