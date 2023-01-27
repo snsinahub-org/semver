@@ -24,7 +24,7 @@ async function run() {
 
     // class initializations
     const release = new Release(myToken);    
-    const notes = new GenNotes(token);
+    const notes = new GenNotes(myToken);
     const repoFull = core.getInput('repo').split('/');
     const tags = new getTags();
 
