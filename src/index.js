@@ -24,7 +24,7 @@ async function run() {
 
     // class initializations
     const release = new Release(myToken);    
-    const notes = new GenNotes(myToken);
+    
     const repoFull = core.getInput('repo').split('/');
     const tags = new getTags();
 
@@ -54,9 +54,10 @@ async function run() {
         newVersion = `${prefix}1.0.0`;
     }
 
-
+    const notes = new GenNotes(myToken);
     if(createRelease && !exitOnMissingType) {        
         let releaseNote = await notes.genNotes(owner, repo, latestVersion, newVersion, branch, '');
+        console.log("RELEASE NOTES: ", JSON.stringify(releaseNote))
         let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, releaseNote);
         release.releaseData(newRelease);    
         if(files != '') {
