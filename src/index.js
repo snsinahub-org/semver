@@ -17,7 +17,7 @@ async function run() {
     const files = core.getInput('files');
     const branch = core.getInput('branch');
     const createRelease = core.getInput('create-release') == 'yes' ? true : false;
-    const exitOnMissingType = core.getInput('exit-on-missing-type') == 'no' ? true : false;
+    const exitOnMissingType = core.getInput('exit-on-missing-type') == 'yes' ? true : false;
 
 
 
