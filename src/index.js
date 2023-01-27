@@ -58,8 +58,8 @@ async function run() {
     const notes = new GenNotes(myToken);
     if(createRelease && !exitOnMissingType) {        
         const releaseNote = await notes.genNotes(owner, repo, latestVersion, newVersion, branch, '');
-        console.log("RELEASE NOTES: ", JSON.stringify(releaseNote))
-        let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, releaseNote);
+        console.log("RELEASE NOTES: ", JSON.stringify(releaseNote.data.body))
+        let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, releaseNote.data.body);
         release.releaseData(newRelease);    
         if(files != '') {
             let upload = await release.uploadFiles(owner, repo, files);
