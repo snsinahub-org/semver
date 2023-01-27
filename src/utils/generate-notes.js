@@ -18,7 +18,7 @@ module.exports = class GenerateReleaseNote {
     
 
     async genNotes(owner, repo, previous_tag_name, tag_name, branch, config_path = '') {
-        return await octokit.request('POST /repos/{owner}/{repo}/releases/generate-notes', {
+        return await this.octokit.request('POST /repos/{owner}/{repo}/releases/generate-notes', {
             owner: owner,
             repo: repo,
             tag_name: tag_name,
