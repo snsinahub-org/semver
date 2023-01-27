@@ -17,7 +17,7 @@ async function run() {
     const files = core.getInput('files');
     const branch = core.getInput('branch');
     const createRelease = core.getInput('create-release') == 'yes' ? true : false;
-    const exitOnMissingType = core.getInput('exit-on-missing-type') == 'yes' ? true : false;
+    const exitOnMissingType = core.getInput('exit-on-missing-type') == 'no' ? true : false;
 
 
 
@@ -45,6 +45,7 @@ async function run() {
 
     let newVersion = '';
     let latestVersion =  ''
+    console.log("RELEASE NOTES: ", jsonUtils.jsonObj.length, JSON.stringify(releaseNote))
     if(jsonUtils.jsonObj.length > 0 && !exitOnMissingType){
         latestVersion = jsonUtils.firstItem('tagName');
         newVersion = jsonUtils.upgradeVersion(latestVersion, type, prefix);
