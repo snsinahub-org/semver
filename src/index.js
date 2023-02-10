@@ -5,6 +5,7 @@ const { graphql } = require("@octokit/graphql");
 const getTags = require('./utils/get-tags.js');
 const JsonUtils = require('./utils/json-utils.js');
 const Release = require('./utils/release.js');
+const GenNotes = require('./utils/generate-notes.js');
 
 async function run() {
     // Inputs
@@ -23,6 +24,7 @@ async function run() {
 
     // class initializations
     const release = new Release(myToken);    
+    
     const repoFull = core.getInput('repo').split('/');
     const tags = new getTags();
 
@@ -42,16 +44,22 @@ async function run() {
     } 
 
     let newVersion = '';
+    let latestVersion =  ''
+    
     if(jsonUtils.jsonObj.length > 0 && !exitOnMissingType){
-        const latestVersion =  jsonUtils.firstItem('tagName');
+        latestVersion = jsonUtils.firstItem('tagName');
         newVersion = jsonUtils.upgradeVersion(latestVersion, type, prefix);
+
+
     } else {
         newVersion = `${prefix}1.0.0`;
     }
 
-
+    const notes = new GenNotes(myToken);
     if(createRelease && !exitOnMissingType) {        
-        let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, body);
+        const releaseNote = await notes.genNotes(owner, repo, latestVersion, newVersion, branch, '');
+        console.log("RELEASE NOTES: ", JSON.stringify(releaseNote.data.body))
+        let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, `${releaseNote.data.body}\n\n${body}`);
         release.releaseData(newRelease);    
         if(files != '') {
             let upload = await release.uploadFiles(owner, repo, files);
