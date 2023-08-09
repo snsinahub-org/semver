@@ -55,6 +55,8 @@ async function run() {
         newVersion = `${prefix}1.0.0`;
     }
 
+    console.log("NEW VERSION: ", newVersion);
+
     const notes = new GenNotes(myToken);
     if(createRelease && !exitOnMissingType) {        
         const releaseNote = await notes.genNotes(owner, repo, latestVersion, newVersion, branch, '');
