@@ -33,38 +33,21 @@ async function run() {
     let owner = repoFull[0];
     let repo = repoFull[1]
     const repository = await tags.getAllTags(owner, repo, myToken);
-    // console.log('All tags5 INDEX 5555:', allTags3);
-    // const { repository } = await tags.getAllTags(owner, repo, myToken).then((allTags) => {
-    //     console.log('All tags in INDEX:', JSON.stringify(allTags, null, 2));
-    //     return allTags;
-    // });
-
-    console.log('repository:', JSON.stringify(repository, null, 2));
-    
+        
     let tagsObj = tags.getTags(repository);
 
-    let jsonUtils = new JsonUtils(tagsObj); 
-
-    console.log('JSON utils:', JSON.stringify(jsonUtils, null, 2));
-
-    console.log('start with:', startsWith);
-
-    
+    let jsonUtils = new JsonUtils(tagsObj);    
 
     if (startsWith != '') {
         tagsObj = jsonUtils.filterByStartsWith(startsWith);
     } 
 
-    
-
-    console.log('filtered:', JSON.stringify(jsonUtils, null, 2));
 
     if(prefix == '') {
         jsonUtils.filterNoPrefix()
     } else {
         jsonUtils.filterByPrefix(prefix);
     } 
-
     
 
     let newVersion = '';
@@ -81,8 +64,7 @@ async function run() {
 
     const notes = new GenNotes(myToken);
     if(createRelease && !exitOnMissingType) {        
-        const releaseNote = await notes.genNotes(owner, repo, latestVersion, newVersion, branch, '');
-        console.log("RELEASE NOTES: ", JSON.stringify(releaseNote.data.body))
+        const releaseNote = await notes.genNotes(owner, repo, latestVersion, newVersion, branch, '');       
         let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, `${releaseNote.data.body}\n\n${body}`);
         release.releaseData(newRelease);    
         if(files != '') {
