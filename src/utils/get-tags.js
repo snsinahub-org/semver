@@ -19,6 +19,10 @@ module.exports = class GetReleaseTags {
         return await this.getAllTags(owner, repo, myToken);
     }
 
+    async *loopAsync() {
+        let i = 1;
+        yield i;
+    }
 
     async getAllTags(owner, repo, myToken) {
         const graphqlWithAuth = graphql.defaults({
@@ -33,7 +37,7 @@ module.exports = class GetReleaseTags {
             let endCursor = null;
             let allTags = [];
             
-            for await (let num of foo()) {
+            for await (let num of loopAsync()) {
                 let response = await graphqlWithAuth(
                     `
                     query ($cursor: String) {
