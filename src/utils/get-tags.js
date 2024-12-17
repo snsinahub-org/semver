@@ -16,11 +16,10 @@ module.exports = class GetReleaseTags {
     }
 
     async getAllTheTags(owner, repo, myToken) {
-        return await this.getAllTags(owner, repo, myToken)
-        // .then((allTags) => {
-        //     console.log('All tags:', JSON.stringify(allTags, null, 2));
-        //     return allTags;
-        // });
+        return POromise.all(this.getAllTags(owner, repo, myToken)).then((allTags) => {
+            console.log('All tags:', JSON.stringify(allTags, null, 2));
+            return allTags;
+        });
     }
 
     
