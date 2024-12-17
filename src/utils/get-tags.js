@@ -19,7 +19,7 @@ module.exports = class GetReleaseTags {
         return await this.getAllTags(owner, repo, myToken);
     }
 
-    async *loopAsync() {
+    async function* loopAsync() {
         let i = 1;
         yield i;
     }
