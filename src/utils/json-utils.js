@@ -39,6 +39,16 @@ module.exports = class JsonUtils {
 
     }
 
+    filterByStartsWith(startsWith) {
+        let matched = _.filter(this.jsonObj, function(obj) { 
+            return obj.tagName.startsWith(startsWith)
+        })
+        this.jsonObj = matched;
+        return matched;
+    }
+
+
+
     // return first item after sorting tags
     firstItem(keyName) {
         let first = this.jsonObj[0][keyName]

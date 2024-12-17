@@ -49,6 +49,10 @@ async function run() {
 
     console.log('start with:', startsWith);
 
+    let filtered = jsonUtils.filterByStartsWith(startsWith);
+
+    console.log('filtered:', JSON.stringify(filtered, null, 2));
+
     let newVersion = '';
     let latestVersion =  ''
     
