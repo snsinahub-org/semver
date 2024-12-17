@@ -16,10 +16,13 @@ module.exports = class GetReleaseTags {
     }
 
     async getAllTheTags(owner, repo, myToken) {
-        return Promise.all(this.getAllTags(owner, repo, myToken)).then((allTags) => {
-            console.log('All tags:', JSON.stringify(allTags, null, 2));
-            return allTags;
-        });
+        const allTags = await this.getAllTags(owner, repo, myToken)
+        
+        return allTags
+        // .then((allTags) => {
+        //     console.log('All tags:', JSON.stringify(allTags, null, 2));
+        //     return allTags;
+        // });
     }
 
     
