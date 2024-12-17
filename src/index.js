@@ -34,7 +34,7 @@ async function run() {
     let repo = repoFull[1]
     
     const { repository } = await tags.getAllTags(owner, repo, myToken);
-    repository.then((data) => {
+    repository.promise((data) => {
         console.log('repo:', JSON.stringify(data, null, 2));
     })
 
