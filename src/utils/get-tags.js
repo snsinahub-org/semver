@@ -27,7 +27,7 @@ module.exports = class GetReleaseTags {
         let allTags = [];
     
         while (hasNextPage) {
-            const response = await graphqlWithAuth(
+            let response = await graphqlWithAuth(
                 `
                   query ($cursor: String) {
                     repository(owner: "${owner}", name: "${repo}") {
@@ -53,7 +53,7 @@ module.exports = class GetReleaseTags {
                 }
             );
     
-            const releases = response.repository.releases;
+            let releases = response.repository.releases;
             allTags = allTags.concat(releases.nodes);
             hasNextPage = releases.pageInfo.hasNextPage;
             endCursor = releases.pageInfo.endCursor;
