@@ -33,7 +33,7 @@ module.exports = class GetReleaseTags {
             let endCursor = null;
             let allTags = [];
             
-            while (hasNextPage) {
+            for await (let hasNextPage of allTags) {
                 let response = await graphqlWithAuth(
                     `
                     query ($cursor: String) {
