@@ -33,7 +33,8 @@ async function run() {
     let owner = repoFull[0];
     let repo = repoFull[1]
     
-    const { repository } = await tags.getAllTags(owner, repo, myToken);
+    const { repository } = await tags.getAllTags(owner, repo, myToken).then((repository) => {
+        
 
     console.log('repository:', JSON.stringify(repository, null, 2));
     console.log('repository:', repository);
@@ -89,6 +90,7 @@ async function run() {
 
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);
     const octokit = github.getOctokit(myToken);
+}
 }
 
 run();
