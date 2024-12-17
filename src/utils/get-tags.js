@@ -28,16 +28,13 @@ module.exports = class GetReleaseTags {
             },
         });
     
-            async function* loopAsync() {
-                yield 1;
-                yield 2;
-            }
+            
        
             let hasNextPage = true;
             let endCursor = null;
             let allTags = [];
             
-            for await (let num of loopAsync()) {
+            while (hasNextPage) {
                 let response = await graphqlWithAuth(
                     `
                     query ($cursor: String) {
@@ -69,7 +66,7 @@ module.exports = class GetReleaseTags {
                 hasNextPage = releases.pageInfo.hasNextPage;
                 endCursor = releases.pageInfo.endCursor;
 
-                allTags = allTags.concat(releases.nodes);
+                allTags = allTags.push(releases.nodes);
                 if(!hasNextPage) break;
 
                 // console.log('All tags:', JSON.stringify(releases, null, 2));
