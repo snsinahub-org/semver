@@ -5,8 +5,8 @@ This action finds the latest Github release semantic version number and generate
 
 ## Action Parameters
 ```YAML
-- name: 'Get json subbed'
-  id: subbed
+- name: 'Get semver'
+  id: semver
   uses: "snsinahub-org/semver@v4.0.0"
   with:
   
