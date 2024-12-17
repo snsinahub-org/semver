@@ -27,7 +27,7 @@ module.exports = class GetReleaseTags {
         });
     
         
-        await Promise.all( async(owner, repo, myToken) => {
+        Promise.all( async(owner, repo, myToken) => {
             let hasNextPage = true;
             let endCursor = null;
             let allTags = [];
