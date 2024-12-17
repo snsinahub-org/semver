@@ -62,7 +62,7 @@ module.exports = class GetReleaseTags {
         }
 
         console.log('All tags:', JSON.stringify(allTags, null, 2));
-        setTimeout(() => {  console.log('1000'); }, 3000);
+       
     
         return allTags;
     }
