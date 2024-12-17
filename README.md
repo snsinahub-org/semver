@@ -5,9 +5,9 @@ This action finds the latest Github release semantic version number and generate
 
 ## Action Parameters
 ```YAML
-- name: 'Get json subbed'
-  id: subbed
-  uses: "snsinahub-org/semver@v3.0.0"
+- name: 'Get semver'
+  id: semver
+  uses: "snsinahub-org/semver@v4.0.0"
   with:
   
     # List of variables
@@ -66,6 +66,12 @@ This action finds the latest Github release semantic version number and generate
     # Required: false
     # Default: 'default-branch'
     branch: 
+
+    # Description:  You can choose a tag prefix to filter the latest release
+    # For example, If latest release is v2.0.0 and you'd like have a release based on v1, you can set the value to 'v1.' to generate new release starts with v1.
+    # Required: false
+    # Default: ''
+    starts-with: ''
 ```
 
 ## Output
@@ -88,10 +94,10 @@ Let's say current version is `v1.0.0` and you can set `type` equal to one of the
 
 ```YAML
     - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@4
     - name: 'Get semver based on pr label'
         id: semver
-        uses: "snsinahub-org/semver@v3.0.0"
+        uses: "snsinahub-org/semver@v4.0.0"
         with:
           type: 'MAJOR'
           prefix: 'v'

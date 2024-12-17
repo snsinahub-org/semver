@@ -18,6 +18,7 @@ async function run() {
     const branch = core.getInput('branch');
     const createRelease = core.getInput('create-release') == 'yes' ? true : false;
     const exitOnMissingType = core.getInput('exit-on-missing-type') == 'yes' ? true : false;
+    const startsWith = core.getInput('starts-with');
 
 
 
@@ -31,17 +32,23 @@ async function run() {
 
     let owner = repoFull[0];
     let repo = repoFull[1]
-    
-    const { repository } = await tags.getAllTags(owner, repo, myToken);
-    
+    const repository = await tags.getAllTags(owner, repo, myToken);
+        
     let tagsObj = tags.getTags(repository);
-    const jsonUtils = new JsonUtils(tagsObj); 
+
+    let jsonUtils = new JsonUtils(tagsObj);    
+
+    if (startsWith != '') {
+        tagsObj = jsonUtils.filterByStartsWith(startsWith);
+    } 
+
 
     if(prefix == '') {
         jsonUtils.filterNoPrefix()
     } else {
         jsonUtils.filterByPrefix(prefix);
     } 
+    
 
     let newVersion = '';
     let latestVersion =  ''
@@ -57,8 +64,7 @@ async function run() {
 
     const notes = new GenNotes(myToken);
     if(createRelease && !exitOnMissingType) {        
-        const releaseNote = await notes.genNotes(owner, repo, latestVersion, newVersion, branch, '');
-        console.log("RELEASE NOTES: ", JSON.stringify(releaseNote.data.body))
+        const releaseNote = await notes.genNotes(owner, repo, latestVersion, newVersion, branch, '');       
         let newRelease = await release.createRelease(owner, repo, newVersion, branch, prerelease, `${releaseNote.data.body}\n\n${body}`);
         release.releaseData(newRelease);    
         if(files != '') {
