@@ -19,6 +19,7 @@ module.exports = class GetReleaseTags {
         return await this.getAllTags(owner, repo, myToken);
     }
 
+
     async getAllTags(owner, repo, myToken) {
         const graphqlWithAuth = graphql.defaults({
             headers: {
@@ -31,6 +32,7 @@ module.exports = class GetReleaseTags {
             let hasNextPage = true;
             let endCursor = null;
             let allTags = [];
+            
             while (hasNextPage) {
                 let response = await graphqlWithAuth(
                     `
@@ -58,7 +60,7 @@ module.exports = class GetReleaseTags {
                     }
                 );
         
-                let releases = response.repository.releases;
+                let releases = await response.repository.releases;
                 
                 hasNextPage = releases.pageInfo.hasNextPage;
                 endCursor = releases.pageInfo.endCursor;
