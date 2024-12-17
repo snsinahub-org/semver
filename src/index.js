@@ -37,7 +37,20 @@ async function run() {
     
     let tagsObj = tags.getTags(repository);
     const jsonUtils = new JsonUtils(tagsObj); 
+
+    console.log('JSON utils:', JSON.stringify(jsonUtils, null, 2));
+
+    console.log('start with:', startsWith);
+
     
+
+    if (startsWith != '') {
+        jsonUtils = jsonUtils.filterByStartsWith(startsWith);
+    } 
+
+    
+
+    console.log('filtered:', JSON.stringify(jsonUtils, null, 2));
 
     if(prefix == '') {
         jsonUtils.filterNoPrefix()
@@ -45,13 +58,7 @@ async function run() {
         jsonUtils.filterByPrefix(prefix);
     } 
 
-    console.log('JSON utils:', JSON.stringify(jsonUtils, null, 2));
-
-    console.log('start with:', startsWith);
-
-    let filtered = jsonUtils.filterByStartsWith(startsWith);
-
-    console.log('filtered:', JSON.stringify(filtered, null, 2));
+    
 
     let newVersion = '';
     let latestVersion =  ''
