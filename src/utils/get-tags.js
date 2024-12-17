@@ -21,6 +21,52 @@ module.exports = class GetReleaseTags {
                 authorization: `token ${myToken}`,
             },
         });
+    
+        let hasNextPage = true;
+        let endCursor = null;
+        let allTags = [];
+    
+        while (hasNextPage) {
+            const response = await graphqlWithAuth(
+                `
+                  query($owner: String!, $repo: String!, $endCursor: String) {
+                    repository(owner: $owner, name: $repo) {
+                      releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}, after: $endCursor) {
+                        nodes {
+                          name
+                          createdAt
+                          tagName
+                        }
+                        pageInfo {
+                          hasNextPage
+                          endCursor
+                        }
+                      }
+                    }
+                  }
+                `,
+                {
+                    owner,
+                    repo,
+                    endCursor,
+                }
+            );
+    
+            const releases = response.repository.releases;
+            allTags = allTags.concat(releases.nodes);
+            hasNextPage = releases.pageInfo.hasNextPage;
+            endCursor = releases.pageInfo.endCursor;
+        }
+    
+        return allTags;
+    }
+
+    async getAllTags2(owner, repo, myToken) {
+        const graphqlWithAuth = graphql.defaults({
+            headers: {
+                authorization: `token ${myToken}`,
+            },
+        });
  
         return await graphqlWithAuth(
             `
