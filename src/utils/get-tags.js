@@ -16,8 +16,9 @@ module.exports = class GetReleaseTags {
     }
 
     async getAllTheTags(owner, repo, myToken) {
-        await this.getAllTags(owner, repo, myToken).then((tags) => {
-            return tags;
+        await this.getAllTags(owner, repo, myToken).then((allTags) => {
+            console.log('All tags:', JSON.stringify(allTags, null, 2));
+            return allTags;
         });
     }
 
@@ -74,7 +75,7 @@ module.exports = class GetReleaseTags {
                 // console.log('All tags:', JSON.stringify(releases, null, 2));
             }
        
-            console.log('All tags:', JSON.stringify(allTags, null, 2));
+            
             return allTags;
         
     }
