@@ -12,18 +12,11 @@ module.exports = class GetReleaseTags {
     }
  
     getTags(jsonObj) {
+        console.log('jsonObj:', JSON.stringify(jsonObj, null, 2));
         return jsonObj['releases']['nodes'];
     }
 
-    async getAllTheTags(owner, repo, myToken) {
-        return await this.getAllTags(owner, repo, myToken).then((allTags) => {
-            console.log('All tags:', JSON.stringify(allTags, null, 2));
-            return allTags;
-        });
-
-    }
-
-    
+     
 
     async getAllTags(owner, repo, myToken) {
         const graphqlWithAuth = graphql.defaults({
@@ -76,7 +69,7 @@ module.exports = class GetReleaseTags {
                 // console.log('All tags:', JSON.stringify(releases, null, 2));
             }
        
-            
+            console.log('All tags:', JSON.stringify(allTags, null, 2));
             return allTags;
         
     }
