@@ -29,7 +29,7 @@ module.exports = class GetReleaseTags {
         while (hasNextPage) {
             const response = await graphqlWithAuth(
                 `
-                  query {
+                  query ($cursor: String) {
                     repository(owner: "${owner}", name: "${repo}") {
                     releases(first: 100, after: $cursor, orderBy: {field: CREATED_AT, direction: DESC}) {
                         nodes {
