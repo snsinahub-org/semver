@@ -33,7 +33,7 @@ module.exports = class GetReleaseTags {
             let endCursor = null;
             let allTags = [];
             
-            for await (let hasNextPage of allTags) {
+            for await (let num of 1) {
                 let response = await graphqlWithAuth(
                     `
                     query ($cursor: String) {
@@ -66,6 +66,7 @@ module.exports = class GetReleaseTags {
                 endCursor = releases.pageInfo.endCursor;
 
                 allTags = allTags.concat(releases.nodes);
+                if(!hasNextPage) break;
 
                 // console.log('All tags:', JSON.stringify(releases, null, 2));
             }
