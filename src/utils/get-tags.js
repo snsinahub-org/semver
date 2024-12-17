@@ -52,6 +52,8 @@ module.exports = class GetReleaseTags {
             allTags = allTags.concat(releases.nodes);
             hasNextPage = releases.pageInfo.hasNextPage;
             endCursor = releases.pageInfo.endCursor;
+
+            console.log('All tags:', JSON.stringify(allTags, null, 2));
         }
     
         return allTags;
