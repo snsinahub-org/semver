@@ -38,6 +38,7 @@ module.exports = class GetReleaseTags {
                           tagName
                         }
                         pageInfo {
+                          startCursor
                           endCursor
                           hasNextPage
                         }
