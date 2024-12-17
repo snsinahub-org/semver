@@ -42,6 +42,7 @@ async function run() {
     console.log('repository:', JSON.stringify(repository, null, 2));
     
     let tagsObj = tags.getTags(repository);
+
     let jsonUtils = new JsonUtils(tagsObj); 
 
     console.log('JSON utils:', JSON.stringify(jsonUtils, null, 2));
@@ -51,7 +52,7 @@ async function run() {
     
 
     if (startsWith != '') {
-        jsonUtils = jsonUtils.filterByStartsWith(startsWith);
+        tagsObj = jsonUtils.filterByStartsWith(startsWith);
     } 
 
     
