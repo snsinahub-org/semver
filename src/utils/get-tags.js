@@ -16,7 +16,9 @@ module.exports = class GetReleaseTags {
     }
 
     async getAllTheTags(owner, repo, myToken) {
-        return await this.getAllTags(owner, repo, myToken);
+        await this.getAllTags(owner, repo, myToken).then((tags) => {
+            return tags;
+        });
     }
 
     
@@ -66,7 +68,7 @@ module.exports = class GetReleaseTags {
                 hasNextPage = releases.pageInfo.hasNextPage;
                 endCursor = releases.pageInfo.endCursor;
 
-                allTags = allTags.push(releases.nodes);
+                allTags = allTags.concat(releases.nodes);
                 if(!hasNextPage) break;
 
                 // console.log('All tags:', JSON.stringify(releases, null, 2));
