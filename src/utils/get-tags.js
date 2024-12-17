@@ -19,10 +19,7 @@ module.exports = class GetReleaseTags {
         return await this.getAllTags(owner, repo, myToken);
     }
 
-    async function* loopAsync() {
-        let i = 1;
-        yield i;
-    }
+    
 
     async getAllTags(owner, repo, myToken) {
         const graphqlWithAuth = graphql.defaults({
@@ -31,7 +28,10 @@ module.exports = class GetReleaseTags {
             },
         });
     
-        
+            async function* loopAsync() {
+                yield 1;
+                yield 2;
+            }
        
             let hasNextPage = true;
             let endCursor = null;
