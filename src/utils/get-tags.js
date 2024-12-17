@@ -30,7 +30,7 @@ module.exports = class GetReleaseTags {
             const response = await graphqlWithAuth(
                 `
                   query($owner: String!, $repo: String!, $endCursor: String) {
-                    repository(owner: ${owner}, name: ${repo}) {
+                    repository(owner: $owner, name: $repo) {
                       releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}, after: $endCursor) {
                         nodes {
                           name
@@ -46,8 +46,8 @@ module.exports = class GetReleaseTags {
                   }
                 `,
                 {
-                    owner,
-                    repo,
+                    owner: $owner,
+                    repo: $repo,
                     endCursor,
                 }
             );
