@@ -27,7 +27,7 @@ module.exports = class GetReleaseTags {
         });
     
         
-        Promise.all( async(owner, repo, myToken) => {
+       
             let hasNextPage = true;
             let endCursor = null;
             let allTags = [];
@@ -67,17 +67,9 @@ module.exports = class GetReleaseTags {
 
                 // console.log('All tags:', JSON.stringify(releases, null, 2));
             }
-        }).then(() => {
-
-
+       
             console.log('All tags:', JSON.stringify(allTags, null, 2));
             return allTags;
-            
-        });
-
-        
-        
-    
         
     }
 
