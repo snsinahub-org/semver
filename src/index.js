@@ -18,6 +18,7 @@ async function run() {
     const branch = core.getInput('branch');
     const createRelease = core.getInput('create-release') == 'yes' ? true : false;
     const exitOnMissingType = core.getInput('exit-on-missing-type') == 'yes' ? true : false;
+    const startsWith = core.getInput('starts-with');
 
 
 
@@ -36,12 +37,15 @@ async function run() {
     
     let tagsObj = tags.getTags(repository);
     const jsonUtils = new JsonUtils(tagsObj); 
+    
 
     if(prefix == '') {
         jsonUtils.filterNoPrefix()
     } else {
         jsonUtils.filterByPrefix(prefix);
     } 
+
+    console.log('JSON utils:', JSON.stringify(jsonUtils, null, 2));
 
     let newVersion = '';
     let latestVersion =  ''
