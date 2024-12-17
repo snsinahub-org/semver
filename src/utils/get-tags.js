@@ -26,49 +26,59 @@ module.exports = class GetReleaseTags {
             },
         });
     
-        let hasNextPage = true;
-        let endCursor = null;
-        let allTags = [];
-    
-        while (hasNextPage) {
-            let response = await graphqlWithAuth(
-                `
-                  query ($cursor: String) {
-                    repository(owner: "${owner}", name: "${repo}") {
-                    releases(first: 100, after: $cursor, orderBy: {field: CREATED_AT, direction: DESC}) {
-                        nodes {
-                          name
-                          createdAt
-                          tagName
+        
+        await Promise.all( async(owner, repo, myToken) => {
+            let hasNextPage = true;
+            let endCursor = null;
+            let allTags = [];
+            while (hasNextPage) {
+                let response = await graphqlWithAuth(
+                    `
+                    query ($cursor: String) {
+                        repository(owner: "${owner}", name: "${repo}") {
+                        releases(first: 100, after: $cursor, orderBy: {field: CREATED_AT, direction: DESC}) {
+                            nodes {
+                            name
+                            createdAt
+                            tagName
+                            }
+                            pageInfo {
+                            startCursor
+                            endCursor
+                            hasNextPage
+                            }
                         }
-                        pageInfo {
-                          startCursor
-                          endCursor
-                          hasNextPage
                         }
                     }
+                    `,
+                    {
+                        owner: owner,
+                        repo: repo,
+                        cursor: endCursor,
                     }
-                }
-                `,
-                {
-                    owner: owner,
-                    repo: repo,
-                    cursor: endCursor,
-                }
-            );
-    
-            let releases = response.repository.releases;
-            allTags = allTags.concat(releases.nodes);
-            hasNextPage = releases.pageInfo.hasNextPage;
-            endCursor = releases.pageInfo.endCursor;
+                );
+        
+                let releases = response.repository.releases;
+                
+                hasNextPage = releases.pageInfo.hasNextPage;
+                endCursor = releases.pageInfo.endCursor;
 
-            // console.log('All tags:', JSON.stringify(releases, null, 2));
-        }
+                allTags = allTags.concat(releases.nodes);
+
+                // console.log('All tags:', JSON.stringify(releases, null, 2));
+            }
+        }).then(() => {
+
+
+            console.log('All tags:', JSON.stringify(allTags, null, 2));
+            return allTags;
+            
+        });
 
         
-        console.log('All tags:', JSON.stringify(allTags, null, 2));
+        
     
-        return allTags;
+        
     }
 
     async getAllTags2(owner, repo, myToken) {
