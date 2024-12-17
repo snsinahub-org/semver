@@ -44,12 +44,7 @@ module.exports = class GetReleaseTags {
                     }
                     }
                 }
-                `,
-                {
-                    owner: owner,
-                    repo: repo,
-                    cursor: endCursor,
-                }
+                `
             );
     
             const releases = response.repository.releases;
