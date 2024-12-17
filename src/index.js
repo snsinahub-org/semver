@@ -32,7 +32,8 @@ async function run() {
 
     let owner = repoFull[0];
     let repo = repoFull[1]
-    
+    const allTags3 = await tags.getAllTags(owner, repo, myToken);
+    console.log('All tags:', allTags3);
     const { repository } = await tags.getAllTags(owner, repo, myToken).then((allTags) => {
         console.log('All tags in INDEX:', JSON.stringify(allTags, null, 2));
         return allTags;
@@ -93,4 +94,4 @@ async function run() {
     const octokit = github.getOctokit(myToken);
 }
 
-await run();
+run();
