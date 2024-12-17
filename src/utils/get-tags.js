@@ -48,7 +48,7 @@ module.exports = class GetReleaseTags {
                 {
                     owner: $owner,
                     repo: $repo,
-                    endCursor,
+                    endCursor: $endCursor,
                 }
             );
     
