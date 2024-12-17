@@ -47,6 +47,8 @@ async function run() {
 
     console.log('JSON utils:', JSON.stringify(jsonUtils, null, 2));
 
+    console.log('start with:', startsWith);
+
     let newVersion = '';
     let latestVersion =  ''
     
