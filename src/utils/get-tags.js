@@ -29,21 +29,21 @@ module.exports = class GetReleaseTags {
         while (hasNextPage) {
             const response = await graphqlWithAuth(
                 `
-                  
-                    repository(owner: $owner, name: $repo) {
-                    releases(first: 100, after: $cursor, orderBy: {field: CREATED_AT, direction: DESC}) {
+                  query($owner: String!, $repo: String!, $cursor: String) {
+                    repository(owner: "${owner}", name: "${repo}") {
+                    releases(first: 100, after: ${cursor}, orderBy: {field: CREATED_AT, direction: DESC}) {
                         nodes {
-                        name
-                        createdAt
-                        tagName
+                          name
+                          createdAt
+                          tagName
                         }
                         pageInfo {
-                        endCursor
-                        hasNextPage
+                          endCursor
+                          hasNextPage
                         }
                     }
                     }
-                
+                }
                 `,
                 {
                     owner: owner,
