@@ -38,9 +38,9 @@ async function run() {
     let tagsObj = tags.getTags(repository);
     let jsonUtils = new JsonUtils(tagsObj); 
 
-    // console.log('JSON utils:', JSON.stringify(jsonUtils, null, 2));
+    console.log('JSON utils:', JSON.stringify(jsonUtils, null, 2));
 
-    // console.log('start with:', startsWith);
+    console.log('start with:', startsWith);
 
     
 
