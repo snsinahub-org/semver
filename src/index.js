@@ -32,11 +32,17 @@ async function run() {
 
     let owner = repoFull[0];
     let repo = repoFull[1]
-                           
-    const { repository } = await tags.getAllTags(owner, repo, myToken);
+    
+    try {
+        const { repository } = await tags.getAllTags(owner, repo, myToken);
+        console.log('repo:', JSON.stringify(repository, null, 2));
+        console.log('repository:', JSON.stringify(repository, null, 2));
+    } catch (error) {
+        console.error('Error:', JSON.stringify(error, null, 2));
+    }
+    
 
-    console.log('repo:', JSON.stringify(repository, null, 2));
-    console.log('repository:', JSON.stringify(repository, null, 2));
+    
     
     let tagsObj = tags.getTags(repository);
     let jsonUtils = new JsonUtils(tagsObj); 
