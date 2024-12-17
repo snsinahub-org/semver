@@ -38,6 +38,7 @@ async function run() {
 
     console.log('repository:', JSON.stringify(repository, null, 2));
     console.log('repository:', repository);
+    });
     
     let tagsObj = tags.getTags(repository);
     let jsonUtils = new JsonUtils(tagsObj); 
@@ -90,7 +91,6 @@ async function run() {
 
     fs.appendFileSync(process.env.GITHUB_OUTPUT, "version=" + newVersion);
     const octokit = github.getOctokit(myToken);
-}
 }
 
 run();
