@@ -18,7 +18,7 @@ module.exports = class GetReleaseTags {
 
      
 
-    async getAllTags(owner, repo, myToken) {
+    async getAllTags2(owner, repo, myToken) {
         const graphqlWithAuth = graphql.defaults({
             headers: {
                 authorization: `token ${myToken}`,
@@ -38,14 +38,14 @@ module.exports = class GetReleaseTags {
                         repository(owner: "${owner}", name: "${repo}") {
                         releases(first: 100, after: $cursor, orderBy: {field: CREATED_AT, direction: DESC}) {
                             nodes {
-                            name
-                            createdAt
-                            tagName
+                                name
+                                createdAt
+                                tagName
                             }
                             pageInfo {
-                            startCursor
-                            endCursor
-                            hasNextPage
+                                startCursor
+                                endCursor
+                                hasNextPage
                             }
                         }
                         }
@@ -74,7 +74,7 @@ module.exports = class GetReleaseTags {
         
     }
 
-    async getAllTags2(owner, repo, myToken) {
+    async getAllTags(owner, repo, myToken) {
         const graphqlWithAuth = graphql.defaults({
             headers: {
                 authorization: `token ${myToken}`,
