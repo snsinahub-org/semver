@@ -15,6 +15,10 @@ module.exports = class GetReleaseTags {
         return jsonObj['releases']['nodes'];
     }
 
+    async getAllTheTags(owner, repo, myToken) {
+        return await this.getAllTags(owner, repo, myToken);
+    }
+
     async getAllTags(owner, repo, myToken) {
         const graphqlWithAuth = graphql.defaults({
             headers: {
@@ -63,7 +67,7 @@ module.exports = class GetReleaseTags {
 
         
        
-        setTimeout(function(){
+        await setTimeout(function(){
             console.log('All tags:', JSON.stringify(allTags, null, 2));
         }, 2000);
     
