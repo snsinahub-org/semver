@@ -33,7 +33,10 @@ async function run() {
     let owner = repoFull[0];
     let repo = repoFull[1]
     
-    const { repository } = await tags.getAllTheTags(owner, repo, myToken);
+    const { repository } = await tags.getAllTheTags(owner, repo, myToken).then((allTags) => {
+        console.log('All tags in INDEX:', JSON.stringify(allTags, null, 2));
+        return allTags;
+    });
 
     console.log('repository:', JSON.stringify(repository, null, 2));
     
