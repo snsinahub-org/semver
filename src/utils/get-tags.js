@@ -20,6 +20,8 @@ module.exports = class GetReleaseTags {
             console.log('All tags:', JSON.stringify(allTags, null, 2));
             return allTags;
         });
+
+        return allTags;
     }
 
     
