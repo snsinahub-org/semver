@@ -18,6 +18,7 @@ module.exports = class GenerateReleaseNote {
     
 
     async genNotes(owner, repo, previous_tag_name, tag_name, branch, config_path = '') {
+        console.log(`Generating release notes for ${owner}/${repo} from ${previous_tag_name} to ${tag_name} on branch ${branch} with config file ${config_path}`);
         return await this.octokit.request('POST /repos/{owner}/{repo}/releases/generate-notes', {
             owner: owner,
             repo: repo,
