@@ -23,7 +23,7 @@ module.exports = class GenerateReleaseNote {
             owner: owner,
             repo: repo,
             tag_name: tag_name,
-            target_commitish: branch,
+            target_commitish: `"${branch}"`,
             previous_tag_name: previous_tag_name,
             configuration_file_path: config_path
           })
