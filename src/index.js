@@ -1,11 +1,11 @@
-const github = require('@actions/github');
-const core = require('@actions/core');
-const fs = require('fs');
-const { graphql } = require("@octokit/graphql");
-const getTags = require('./utils/get-tags.js');
-const JsonUtils = require('./utils/json-utils.js');
-const Release = require('./utils/release.js');
-const GenNotes = require('./utils/generate-notes.js');
+import github from '@actions/github';
+import core from '@actions/core';
+import fs from 'fs';
+import { graphql } from "@octokit/graphql";
+import getTags from './utils/get-tags.js';
+import JsonUtils from './utils/json-utils.js';
+import Release from './utils/release.js';
+import GenNotes from './utils/generate-notes.js';
 
 async function run() {
     // Inputs
