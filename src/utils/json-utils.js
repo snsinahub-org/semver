@@ -1,8 +1,8 @@
 'use strict';
 
-const _ = require('lodash');
+import _ from 'lodash';
 
-module.exports = class JsonUtils {
+export default class JsonUtils {
 
     constructor(jsonObj) {
         this.jsonObj = jsonObj

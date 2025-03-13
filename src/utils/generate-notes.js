@@ -1,11 +1,9 @@
 'use strict';
 
+import { Octokit } from "@octokit/rest";
+import _ from 'lodash';
 
-const _ = require('lodash');
-const { Octokit } = require("@octokit/rest");
-
-
-module.exports = class GenerateReleaseNote {
+export default class GenerateReleaseNote {
 
     constructor(token) {
         this.token = token;
@@ -18,6 +16,7 @@ module.exports = class GenerateReleaseNote {
     
 
     async genNotes(owner, repo, previous_tag_name, tag_name, branch, config_path = '') {
+       
         return await this.octokit.request('POST /repos/{owner}/{repo}/releases/generate-notes', {
             owner: owner,
             repo: repo,
