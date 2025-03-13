@@ -7,7 +7,7 @@ This action finds the latest Github release semantic version number and generate
 ```YAML
 - name: 'Get semver'
   id: semver
-  uses: "snsinahub-org/semver@v4.0.0"
+  uses: "snsinahub-org/semver@v4.0.1"
   with:
   
     # List of variables
@@ -97,7 +97,7 @@ Let's say current version is `v1.0.0` and you can set `type` equal to one of the
         uses: actions/checkout@4
     - name: 'Get semver based on pr label'
         id: semver
-        uses: "snsinahub-org/semver@v4.0.0"
+        uses: "snsinahub-org/semver@v4.0.1"
         with:
           type: 'MAJOR'
           prefix: 'v'
